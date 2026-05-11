@@ -232,25 +232,24 @@ export function DataTable() {
     axios
       .get("http://localhost:8000/conversations", { params: { page_size: 100 } })
       .then(({ data: res }) => {
-        const statusMap: Record<string, string> = { success: "Successful", failure: "Failed", unknown: "In Progress" };
-        const mapped = res.conversations.map((c: any) =>
+        const mapped = (Array.isArray(res) ? res : []).map((c: any) =>
           schema.parse({
-            id: c.conversation_id,
-            date: new Date(c.start_time_unix_secs * 1000).toISOString(),
-            agent: c.agent_name ?? "Unnamed agent",
-            duration: fmt(c.call_duration_secs),
-            messages: c.message_count,
-            evaluation: statusMap[c.call_successful] ?? "In Progress",
-            transcript: "",
-            recordingUrl: "",
-            client: { name: "Client", phone: "" },
-            tags: [],
-            creditsCall: 0,
-            creditsLLM: 0,
-            costPerMin: 0,
-            totalUSD: 0,
-            turns: [],
-            clientOverrides: { language: "English" },
+            id: c.id,
+            date: new Date(c.date || Date.now()).toISOString(),
+            agent: c.agent ?? "Unnamed agent",
+            duration: String(c.duration ?? "0:00"),
+            messages: c.messages ?? 0,
+            evaluation: c.evaluation ?? "In Progress",
+            transcript: c.transcript ?? "",
+            recordingUrl: c.recordingUrl ?? "",
+            client: { name: c.client?.name ?? "Client", phone: c.client?.phone ?? "" },
+            tags: c.tags ?? [],
+            creditsCall: c.creditsCall ?? 0,
+            creditsLLM: c.creditsLLM ?? 0,
+            costPerMin: c.costPerMin ?? 0,
+            totalUSD: c.totalUSD ?? 0,
+            turns: c.turns ?? [],
+            clientOverrides: c.clientOverrides ?? { language: "English" },
           })
         );
         setData(mapped);
@@ -288,8 +287,8 @@ export function DataTable() {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (active && over && active.id !== over.id) {
-      const oldIndex = dataIds.indexOf(active.id);
-      const newIndex = dataIds.indexOf(over.id);
+      const oldIndex = dataIds.indexOf(active.id as string);
+      const newIndex = dataIds.indexOf(over.id as string);
       setData((rows) => arrayMove(rows, oldIndex, newIndex));
     }
   };
@@ -595,7 +594,7 @@ function TableCellViewer({
                     <div key={i} className="text-sm">
                       <div className="flex justify-between">
                         <span className="font-medium">
-                          {t.speaker === "user" ? detail.client.name : item.agent}
+                          {t.speaker === "user" ? detail?.client?.name : item.agent}
                         </span>
                         <span className="text-muted-foreground">{t.time}</span>
                       </div>

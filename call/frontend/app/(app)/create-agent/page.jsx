@@ -90,7 +90,7 @@ export default function CreateAgentPage() {
     if (!prompt.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/generate-agent", {
+      const res = await fetch("http://localhost:8000/api/generate-agent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),

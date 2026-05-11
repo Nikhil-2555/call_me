@@ -1,10 +1,12 @@
-// app/api/generate-agent/route.js
-export async function POST(request) {
+const router = require("express").Router();
+
+/* POST /api/generate-agent — proxy to Gemini for AI agent generation */
+router.post("/generate-agent", async (req, res) => {
   try {
-    const { prompt } = await request.json();
+    const { prompt } = req.body;
 
     if (!prompt?.trim()) {
-      return Response.json({ error: 'Prompt is required' }, { status: 400 });
+      return res.status(400).json({ error: "Prompt is required" });
     }
 
     const systemPrompt = `You are an AI assistant that generates voice agent configurations based on user requests. 
@@ -16,7 +18,7 @@ Given a user's request, generate a JSON object with the following structure:
   "additionalLanguages": ["array", "of", "languages"] (optional, can be empty array),
   "firstMessage": "Greeting message the agent will say first",
   "systemPrompt": "Detailed system prompt for the agent's behavior and personality",
-  "llmProvider": "Gemini 1.5 Flash" (default) or "GPT-4o-mini" or "Claude-3.5-Sonnet",
+  "llmProvider": "llama-3.3-70b-versatile" (default) or "mixtral-8x7b-32768",
   "temperature": number between 0-2 (default 0.7),
   "maxTokens": number (default -1 for no limit),
   "enableLanguageDetection": boolean (default true),
@@ -36,50 +38,49 @@ User request: "${prompt}"
 
 Respond ONLY with the JSON object, no additional text or markdown.`;
 
-    // Make the fetch call to Gemini HTTP API
-    const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    const apiKey = process.env.GROQ_API_KEY;
+    const groqResponse = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
       {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+        method: "POST",
+        headers: { 
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json" 
         },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: systemPrompt }]
-            }
-          ]
-        })
+          model: "llama-3.3-70b-versatile",
+          messages: [{ role: "user", content: systemPrompt }],
+          temperature: 0.7,
+        }),
       }
     );
 
-    const geminiData = await geminiResponse.json();
-    const text = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text;
+    const groqData = await groqResponse.json();
+    const text = groqData?.choices?.[0]?.message?.content;
 
     if (!text) {
-      console.error('No response text from Gemini:', geminiData);
-      return Response.json({ error: 'No content received from Gemini' }, { status: 500 });
+      console.error("No response text from Groq:", groqData);
+      return res.status(500).json({ error: "No content received from Groq" });
     }
 
-    // Clean and parse JSON
+    /* Clean and parse JSON */
     let agentConfig;
     try {
-      const cleanText = text.replace(/```json\n?|```\n?/g, '').trim();
+      const cleanText = text.replace(/```json\n?|```\n?/g, "").trim();
       agentConfig = JSON.parse(cleanText);
     } catch (parseError) {
-      console.error('Failed to parse Gemini response:', text);
-      return Response.json({ error: 'Failed to generate valid agent configuration' }, { status: 500 });
+      console.error("Failed to parse Groq response:", text);
+      return res.status(500).json({ error: "Failed to generate valid agent configuration" });
     }
 
-    // Validate and sanitize config
+    /* Validate and sanitize config */
     const validatedConfig = {
       name: agentConfig.name || "AI Agent",
       language: agentConfig.language || "English",
       additionalLanguages: Array.isArray(agentConfig.additionalLanguages) ? agentConfig.additionalLanguages : [],
       firstMessage: agentConfig.firstMessage || "Hello! How can I help you today?",
       systemPrompt: agentConfig.systemPrompt || "You are a helpful AI assistant.",
-      llmProvider: agentConfig.llmProvider || "Gemini 1.5 Flash",
+      llmProvider: agentConfig.llmProvider || "llama-3.3-70b-versatile",
       temperature: Math.max(0, Math.min(2, agentConfig.temperature || 0.7)),
       maxTokens: agentConfig.maxTokens || -1,
       enableLanguageDetection: agentConfig.enableLanguageDetection !== false,
@@ -90,16 +91,14 @@ Respond ONLY with the JSON object, no additional text or markdown.`;
         transferToAgent: agentConfig.tools?.transferToAgent || false,
         transferToNumber: agentConfig.tools?.transferToNumber || false,
         playKeypadTouchTone: agentConfig.tools?.playKeypadTouchTone || false,
-      }
+      },
     };
 
-    return Response.json(validatedConfig);
-
+    res.json(validatedConfig);
   } catch (error) {
-    console.error('Gemini API error:', error);
-    return Response.json(
-      { error: 'Failed to generate agent configuration' },
-      { status: 500 }
-    );
+    console.error("Groq API error:", error);
+    res.status(500).json({ error: "Failed to generate agent configuration" });
   }
-}
+});
+
+module.exports = router;

@@ -9,7 +9,7 @@ export function OrangeSpinner({
 }: {
   delay?: number
   className?: string          // ✅ add this
-  children: React.ReactNode
+  children?: React.ReactNode
 }) {
   const [show, setShow] = useState(false)
 

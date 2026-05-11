@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
-
+require("express-ws")(app);
 /* ── Middleware ── */
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json({ limit: "10mb" }));

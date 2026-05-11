@@ -10,6 +10,7 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
+  DrawerDescription,
   DrawerClose,
   DrawerTrigger,
 } from "@/components/ui/drawer";
@@ -65,7 +66,7 @@ interface PhoneNumberRecord {
 
 interface Agent {
   agent_id: string;
-  agent_name: string;
+  name: string;
 }
 
 /* ------------------------------------------------------------------ */
@@ -174,6 +175,7 @@ function ImportDrawer() {
       <DrawerContent className="max-w-md mx-auto">
         <DrawerHeader>
           <DrawerTitle>Import phone number from Twilio</DrawerTitle>
+          <DrawerDescription className="sr-only">Form to import a new Twilio phone number</DrawerDescription>
         </DrawerHeader>
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
           <div>
@@ -190,7 +192,7 @@ function ImportDrawer() {
           </div>
           <div>
             <Label>Twilio Auth Token</Label>
-            <Input name="token" type="password" required />
+            <Input name="token" type="password" autoComplete="off" required />
           </div>
           <Button type="submit" className="w-full" disabled={mutation.isPending}>
             {mutation.isPending ? "Importing…" : "Import"}
@@ -258,6 +260,7 @@ function NumberDetailDrawer({
             Back to all numbers
           </Link>
           <DrawerTitle className="text-2xl font-bold">{number.label}</DrawerTitle>
+          <DrawerDescription className="sr-only">Details for {number.phone_number}</DrawerDescription>
           <p className="text-lg text-muted-foreground">{number.phone_number}</p>
         </DrawerHeader>
 
@@ -314,11 +317,11 @@ function NumberDetailDrawer({
                 <SelectValue placeholder="Choose an agent" />
               </SelectTrigger>
               <SelectContent>
-                {agents.map((a) => (
-                  <SelectItem key={a.agent_id} value={a.agent_id}>
-                    {a.agent_name}
-                  </SelectItem>
-                ))}
+                      {agents.map((a) => (
+                        <SelectItem key={a.agent_id} value={a.agent_id}>
+                          {a.name || "Unnamed Agent"}
+                        </SelectItem>
+                      ))}
               </SelectContent>
             </Select>
           </section>
@@ -357,7 +360,7 @@ function NumberDetailDrawer({
                     <SelectContent>
                       {agents.map((a) => (
                         <SelectItem key={a.agent_id} value={a.agent_id}>
-                          {a.agent_name}
+                          {a.name || "Unnamed Agent"}
                         </SelectItem>
                       ))}
                     </SelectContent>
