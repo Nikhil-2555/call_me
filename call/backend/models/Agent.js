@@ -42,6 +42,7 @@ const agentSchema = new mongoose.Schema({
   text_only:        { type: Boolean, default: false },
   knowledge_base:   { type: [mongoose.Schema.Types.Mixed], default: [] },
   twilio_phone_number_id: { type: String, default: "" },
+  elevenlabs_agent_id:    { type: String, default: "" },
 
   created_at_unix_secs: { type: Number, default: () => Math.floor(Date.now() / 1000) },
   access_info: {

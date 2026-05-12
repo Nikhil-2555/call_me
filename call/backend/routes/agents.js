@@ -2,7 +2,71 @@ const router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 const Agent = require("../models/Agent");
 
-/* GET /agents/ — list agents */
+const ELEVENLABS_API = "https://api.elevenlabs.io/v1";
+
+/* ────────────────────────────────────────────
+ * Helper: Create agent on ElevenLabs
+ * ──────────────────────────────────────────── */
+async function createElevenLabsAgent(agentData) {
+  const apiKey = process.env.ELEVENLABS_API_KEY;
+  if (!apiKey) return null; // skip if no key
+
+  try {
+    const res = await fetch(`${ELEVENLABS_API}/convai/agents/create`, {
+      method: "POST",
+      headers: {
+        "xi-api-key": apiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: agentData.name,
+        conversation_config: {
+          agent: {
+            prompt: {
+              prompt: agentData.system_prompt || "You are a helpful AI assistant.",
+              llm: agentData.llm_model || "gemini-2.0-flash",
+              temperature: agentData.temperature ?? 0.7,
+              max_tokens: agentData.max_tokens > 0 ? agentData.max_tokens : undefined,
+            },
+            first_message: agentData.first_message || "Hello! How can I help you today?",
+            language: agentData.language || "en",
+          },
+          tts: {
+            voice_id: agentData.voice_id || undefined,
+            model_id: (agentData.language || "en").toLowerCase().startsWith("en") ? "eleven_turbo_v2" : "eleven_turbo_v2_5",
+          },
+          asr: {
+            quality: agentData.asr_quality || "high",
+            provider: agentData.asr_provider || "elevenlabs",
+          },
+          turn: {
+            turn_timeout: agentData.turn_timeout ?? 7,
+          },
+          conversation: {
+            max_duration_seconds: agentData.max_duration_seconds ?? 600,
+          },
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("ElevenLabs agent creation failed:", res.status, errText);
+      return null;
+    }
+
+    const data = await res.json();
+    console.log(`✅ ElevenLabs agent created: ${data.agent_id}`);
+    return data.agent_id; // ElevenLabs agent ID
+  } catch (err) {
+    console.error("ElevenLabs agent creation error:", err.message);
+    return null;
+  }
+}
+
+/* ────────────────────────────────────────────
+ * GET /agents/ — list agents
+ * ──────────────────────────────────────────── */
 router.get("/", async (req, res) => {
   try {
     const pageSize = parseInt(req.query.page_size) || 30;
@@ -13,7 +77,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-/* POST /agents/ — create agent */
+/* ────────────────────────────────────────────
+ * POST /agents/ — create agent (DB + ElevenLabs)
+ * ──────────────────────────────────────────── */
 router.post("/", async (req, res) => {
   try {
     const body = req.body;
@@ -57,14 +123,23 @@ router.post("/", async (req, res) => {
       workflow: body.workflow || {},
     };
 
+    // Also create the agent on ElevenLabs for voice calling
+    const elevenLabsAgentId = await createElevenLabsAgent(agentData);
+    if (elevenLabsAgentId) {
+      agentData.elevenlabs_agent_id = elevenLabsAgentId;
+    }
+
     const agent = await Agent.create(agentData);
+    console.log(`✅ Agent created: ${agent.name} (${agent.agent_id})`);
     res.status(201).json(agent.agent_id);
   } catch (err) {
     res.status(500).json({ detail: err.message });
   }
 });
 
-/* GET /agents/:id — get single agent */
+/* ────────────────────────────────────────────
+ * GET /agents/:id — get single agent
+ * ──────────────────────────────────────────── */
 router.get("/:id", async (req, res) => {
   try {
     const agent = await Agent.findOne({ agent_id: req.params.id }).lean();
@@ -75,7 +150,9 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-/* PUT /agents/:id — update agent */
+/* ────────────────────────────────────────────
+ * PUT /agents/:id — update agent
+ * ──────────────────────────────────────────── */
 router.put("/:id", async (req, res) => {
   try {
     const agent = await Agent.findOneAndUpdate(
@@ -90,7 +167,9 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-/* DELETE /agents/:id — delete agent */
+/* ────────────────────────────────────────────
+ * DELETE /agents/:id — delete agent
+ * ──────────────────────────────────────────── */
 router.delete("/:id", async (req, res) => {
   try {
     const result = await Agent.findOneAndDelete({ agent_id: req.params.id });
