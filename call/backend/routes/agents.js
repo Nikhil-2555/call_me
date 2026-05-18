@@ -34,6 +34,7 @@ async function createElevenLabsAgent(agentData) {
           tts: {
             voice_id: agentData.voice_id || undefined,
             model_id: (agentData.language || "en").toLowerCase().startsWith("en") ? "eleven_turbo_v2" : "eleven_turbo_v2_5",
+            agent_output_audio_format: "ulaw_8000", // pre-configure for Twilio telephony
           },
           asr: {
             quality: agentData.asr_quality || "high",

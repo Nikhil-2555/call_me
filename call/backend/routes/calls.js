@@ -68,6 +68,7 @@ async function createElevenLabsAgentForCall(agent) {
       },
       tts: {
         model_id: language.toLowerCase().startsWith("en") ? "eleven_turbo_v2" : "eleven_turbo_v2_5",
+        agent_output_audio_format: "ulaw_8000", // pre-configure for Twilio telephony
       },
       asr: {
         quality: agent.asr_quality || "high",
@@ -246,6 +247,22 @@ router.ws("/stream", (ws, req) => {
 
   let elevenLabsWs = null;
   let streamSid = null;
+  // Buffer audio chunks that arrive before ElevenLabs is ready
+  let audioBuffer = [];
+  let elevenLabsReady = false;
+
+  /* ------ Flush buffered audio to ElevenLabs ------ */
+  function flushAudioBuffer() {
+    if (audioBuffer.length > 0) {
+      console.log(`📤 Flushing ${audioBuffer.length} buffered audio chunks to ElevenLabs`);
+      for (const chunk of audioBuffer) {
+        if (elevenLabsWs && elevenLabsWs.readyState === WebSocket.OPEN) {
+          elevenLabsWs.send(JSON.stringify({ user_audio_chunk: chunk }));
+        }
+      }
+      audioBuffer = [];
+    }
+  }
 
   /* ------ Connect to ElevenLabs when we know the agent ------ */
   async function connectToElevenLabs(agentId) {
@@ -276,23 +293,55 @@ router.ws("/stream", (ws, req) => {
       elevenLabsWs.on("open", () => {
         console.log("✅ ElevenLabs Conversational AI connected");
 
-        // Send initial config if agent has custom settings
-        const initMsg = {
-          type: "conversation_initiation_client_data",
-          conversation_config_override: {
-            agent: {
-              prompt: {
-                prompt: agent.system_prompt || agent.conversation_config?.conversation?.system_prompt || "",
-              },
-              first_message: agent.first_message || agent.conversation_config?.conversation?.first_message || "",
-              language: agent.language || "en",
-            },
-            tts: {
-              voice_id: agent.voice_id || agent.conversation_config?.conversation?.voice_id || undefined,
-            },
+        // Build initiation message with correct ElevenLabs ConvAI spec
+        const systemPrompt =
+          agent.system_prompt ||
+          agent.conversation_config?.conversation?.system_prompt ||
+          "";
+
+        const firstMessage =
+          agent.first_message ||
+          agent.conversation_config?.conversation?.first_message ||
+          "";
+
+        const voiceId =
+          (agent.voice_id && agent.voice_id !== "") ? agent.voice_id :
+          (agent.conversation_config?.conversation?.voice_id !== "" ? agent.conversation_config?.conversation?.voice_id : undefined);
+
+        const language = agent.language || agent.conversation_config?.conversation?.language || "en";
+
+        // conversation_config_override must follow the ElevenLabs ConvAI schema
+        // CRITICAL: Twilio sends mulaw 8kHz audio — must tell ElevenLabs to use the same
+        // format for both input (ASR) and output (TTS), otherwise agent never hears/speaks.
+        const configOverride = {
+          agent: {
+            prompt: { prompt: systemPrompt },
+            first_message: firstMessage,
+            language: language,
+          },
+          asr: {
+            user_input_audio_format: "ulaw_8000",  // Twilio audio is mulaw 8kHz
+          },
+          tts: {
+            agent_output_audio_format: "ulaw_8000", // Twilio expects mulaw 8kHz back
           },
         };
+
+        // Only add voice_id if we have a valid non-empty one
+        if (voiceId && voiceId.trim()) {
+          configOverride.tts.voice_id = voiceId;
+        }
+
+        const initMsg = {
+          type: "conversation_initiation_client_data",
+          conversation_config_override: configOverride,
+        };
+
         elevenLabsWs.send(JSON.stringify(initMsg));
+        console.log("📤 Sent conversation_initiation_client_data:", JSON.stringify(initMsg).slice(0, 400));
+
+        // Flush any audio buffered while connecting — readiness confirmed by ElevenLabs metadata event
+        flushAudioBuffer();
       });
 
       elevenLabsWs.on("message", (data) => {
@@ -302,12 +351,14 @@ router.ws("/stream", (ws, req) => {
           switch (msg.type) {
             case "audio":
               // ElevenLabs → Twilio: stream AI voice back to the caller
-              if (msg.audio_event?.audio_base_64 && streamSid) {
+              // ElevenLabs ConvAI sends audio base64 in msg.audio.chunk
+              const audioChunk = msg.audio?.chunk || msg.audio_event?.audio_base_64;
+              if (audioChunk && streamSid) {
                 if (ws.readyState === WebSocket.OPEN) {
                   ws.send(JSON.stringify({
                     event: "media",
                     streamSid,
-                    media: { payload: msg.audio_event.audio_base_64 },
+                    media: { payload: audioChunk },
                   }));
                 }
               }
@@ -315,15 +366,13 @@ router.ws("/stream", (ws, req) => {
 
             case "interruption":
               // Clear Twilio's audio buffer when user interrupts
-              if (streamSid) {
-                if (ws.readyState === WebSocket.OPEN) {
-                  ws.send(JSON.stringify({ event: "clear", streamSid }));
-                }
+              if (streamSid && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ event: "clear", streamSid }));
               }
               break;
 
             case "ping":
-              // Keep-alive ping from ElevenLabs
+              // Keep-alive: respond with pong
               if (msg.ping_event?.event_id) {
                 elevenLabsWs.send(JSON.stringify({
                   type: "pong",
@@ -340,8 +389,19 @@ router.ws("/stream", (ws, req) => {
               console.log(`👤 User said: ${msg.user_transcription_event?.user_transcript || "(inaudible)"}`);
               break;
 
+            case "conversation_initiation_metadata":
+              console.log("🟢 ElevenLabs conversation initiated — agent is live and ready");
+              // Mark ready HERE (after ElevenLabs confirms) and flush any remaining buffered audio
+              elevenLabsReady = true;
+              flushAudioBuffer();
+              break;
+
+            case "internal_tentative_agent_response":
+              // Ignore internal partial responses
+              break;
+
             default:
-              console.log(`🔔 ElevenLabs event: ${msg.type}`);
+              console.log(`🔔 ElevenLabs event: ${msg.type}`, JSON.stringify(msg).slice(0, 200));
           }
         } catch (e) {
           console.error("Error parsing ElevenLabs message:", e);
@@ -350,10 +410,12 @@ router.ws("/stream", (ws, req) => {
 
       elevenLabsWs.on("close", (code, reason) => {
         console.log(`❌ ElevenLabs disconnected (${code}): ${reason}`);
+        elevenLabsReady = false;
       });
 
       elevenLabsWs.on("error", (error) => {
         console.error("ElevenLabs WebSocket Error:", error.message);
+        elevenLabsReady = false;
       });
     } catch (err) {
       console.error("Failed to connect to ElevenLabs:", err.message);
@@ -380,11 +442,17 @@ router.ws("/stream", (ws, req) => {
           break;
 
         case "media":
-          // Twilio → ElevenLabs: stream caller's voice to AI
-          if (elevenLabsWs && elevenLabsWs.readyState === WebSocket.OPEN) {
+          // Twilio → ElevenLabs: forward caller's audio (mulaw 8kHz base64)
+          // ElevenLabs ConvAI expects: { user_audio_chunk: "<base64 string>" }
+          if (elevenLabsWs && elevenLabsReady && elevenLabsWs.readyState === WebSocket.OPEN) {
             elevenLabsWs.send(JSON.stringify({
               user_audio_chunk: msg.media.payload,
             }));
+          } else if (!elevenLabsReady) {
+            // Buffer audio until ElevenLabs connection is ready
+            audioBuffer.push(msg.media.payload);
+            // Prevent unbounded buffer growth (keep last 100 chunks ~= ~2 seconds of audio)
+            if (audioBuffer.length > 100) audioBuffer.shift();
           }
           break;
 
