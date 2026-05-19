@@ -1,10 +1,36 @@
 const router = require("express").Router();
+const fs = require("fs");
+const path = require("path");
+
 const WebSocket = require("ws");
 const PhoneNumber = require("../models/PhoneNumber");
 const Agent = require("../models/Agent");
 const twilio = require("twilio");
 
 const ELEVENLABS_API = "https://api.elevenlabs.io/v1";
+
+/* ── Call-level file logger ── */
+const CALL_LOG = path.join(__dirname, "../call_debug.log");
+function clog(...args) {
+  const line = new Date().toISOString().slice(11,23) + " " + args.join(" ") + "\n";
+  process.stdout.write(line);
+  fs.appendFileSync(CALL_LOG, line);
+}
+// Clear log on server start
+try { fs.writeFileSync(CALL_LOG, `=== SERVER START ${new Date().toISOString()} ===\n`); } catch {}
+
+/* ────────────────────────────────────────────
+ * DTMF (dial-key) instructions appended to EVERY agent system prompt.
+ * This prevents ElevenLabs from treating keypad digits as end-call commands.
+ * ──────────────────────────────────────────── */
+const DTMF_INSTRUCTIONS = `
+
+IMPORTANT — KEYPAD INPUT RULES (do NOT ignore):
+- During this phone call the user may press keys on their dial pad.
+- You will receive these as messages starting with "User pressed keypad: " followed by the digit.
+- Treat this as a keypad press, NOT as a command to end the call or an error.
+- NEVER hang up, end the conversation, or say goodbye solely because the user pressed a key.
+- Acknowledge the key naturally (e.g. "Got it, you pressed 0. Let me help you with that.") and continue the conversation.`;
 
 /* ────────────────────────────────────────────
  * Helper: Get a signed ElevenLabs WebSocket URL
@@ -35,10 +61,12 @@ async function createElevenLabsAgentForCall(agent) {
   const apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) throw new Error("ELEVENLABS_API_KEY is not set in .env");
 
-  const systemPrompt =
+  const rawPrompt =
     agent.system_prompt ||
     agent.conversation_config?.conversation?.system_prompt ||
     "You are a helpful AI assistant.";
+  // Always append DTMF instructions so pressing 0-9/*/#  never ends the call
+  const systemPrompt = rawPrompt + DTMF_INSTRUCTIONS;
 
   const firstMessage =
     agent.first_message ||
@@ -243,10 +271,12 @@ router.post("/incoming", async (req, res) => {
  * WS /call/stream — Twilio ↔ ElevenLabs bridge
  * ──────────────────────────────────────────── */
 router.ws("/stream", (ws, req) => {
-  console.log("📞 Twilio connected to WebSocket stream");
+  clog("=== NEW CALL: Twilio WebSocket connected ===");
 
   let elevenLabsWs = null;
   let streamSid = null;
+  let agentIdForReconnect = null;       // store agent_id so we can reconnect if EL drops
+  let isReconnecting = false;           // prevent parallel reconnect storms
   // Buffer audio chunks that arrive before ElevenLabs is ready
   let audioBuffer = [];
   let elevenLabsReady = false;
@@ -254,7 +284,7 @@ router.ws("/stream", (ws, req) => {
   /* ------ Flush buffered audio to ElevenLabs ------ */
   function flushAudioBuffer() {
     if (audioBuffer.length > 0) {
-      console.log(`📤 Flushing ${audioBuffer.length} buffered audio chunks to ElevenLabs`);
+      clog(`FLUSH ${audioBuffer.length} buffered chunks to ElevenLabs`);
       for (const chunk of audioBuffer) {
         if (elevenLabsWs && elevenLabsWs.readyState === WebSocket.OPEN) {
           elevenLabsWs.send(JSON.stringify({ user_audio_chunk: chunk }));
@@ -271,7 +301,7 @@ router.ws("/stream", (ws, req) => {
       const agent = await Agent.findOne({ agent_id: agentId }).lean();
 
       if (!agent) {
-        console.error(`❌ Agent not found in DB: ${agentId}`);
+        clog(`ERROR: Agent not found in DB: ${agentId}`);
         return;
       }
 
@@ -280,67 +310,23 @@ router.ws("/stream", (ws, req) => {
       try {
         elevenLabsAgentId = await ensureElevenLabsAgent(agent);
       } catch (err) {
-        console.error(`❌ Cannot get ElevenLabs agent for "${agent.name}":`, err.message);
+        clog(`ERROR: Cannot get ElevenLabs agent for "${agent.name}":`, err.message);
         return;
       }
 
       // Get signed WebSocket URL (authenticated)
       const signedUrl = await getSignedElevenLabsUrl(elevenLabsAgentId);
-      console.log(`⚡ Connecting to ElevenLabs (agent: ${elevenLabsAgentId})`);
+      clog(`STEP: Got signed URL. Connecting to ElevenLabs agent: ${elevenLabsAgentId}`);
 
       elevenLabsWs = new WebSocket(signedUrl);
 
       elevenLabsWs.on("open", () => {
-        console.log("✅ ElevenLabs Conversational AI connected");
+        clog("STEP: ElevenLabs WebSocket OPENED successfully");
 
-        // Build initiation message with correct ElevenLabs ConvAI spec
-        const systemPrompt =
-          agent.system_prompt ||
-          agent.conversation_config?.conversation?.system_prompt ||
-          "";
-
-        const firstMessage =
-          agent.first_message ||
-          agent.conversation_config?.conversation?.first_message ||
-          "";
-
-        const voiceId =
-          (agent.voice_id && agent.voice_id !== "") ? agent.voice_id :
-          (agent.conversation_config?.conversation?.voice_id !== "" ? agent.conversation_config?.conversation?.voice_id : undefined);
-
-        const language = agent.language || agent.conversation_config?.conversation?.language || "en";
-
-        // conversation_config_override must follow the ElevenLabs ConvAI schema
-        // CRITICAL: Twilio sends mulaw 8kHz audio — must tell ElevenLabs to use the same
-        // format for both input (ASR) and output (TTS), otherwise agent never hears/speaks.
-        const configOverride = {
-          agent: {
-            prompt: { prompt: systemPrompt },
-            first_message: firstMessage,
-            language: language,
-          },
-          asr: {
-            user_input_audio_format: "ulaw_8000",  // Twilio audio is mulaw 8kHz
-          },
-          tts: {
-            agent_output_audio_format: "ulaw_8000", // Twilio expects mulaw 8kHz back
-          },
-        };
-
-        // Only add voice_id if we have a valid non-empty one
-        if (voiceId && voiceId.trim()) {
-          configOverride.tts.voice_id = voiceId;
-        }
-
-        const initMsg = {
-          type: "conversation_initiation_client_data",
-          conversation_config_override: configOverride,
-        };
-
+        const initMsg = { type: "conversation_initiation_client_data" };
         elevenLabsWs.send(JSON.stringify(initMsg));
-        console.log("📤 Sent conversation_initiation_client_data:", JSON.stringify(initMsg).slice(0, 400));
+        clog("STEP: Sent conversation_initiation_client_data");
 
-        // Flush any audio buffered while connecting — readiness confirmed by ElevenLabs metadata event
         flushAudioBuffer();
       });
 
@@ -365,10 +351,7 @@ router.ws("/stream", (ws, req) => {
               break;
 
             case "interruption":
-              // Clear Twilio's audio buffer when user interrupts
-              if (streamSid && ws.readyState === WebSocket.OPEN) {
-                ws.send(JSON.stringify({ event: "clear", streamSid }));
-              }
+              clog("EVENT: interruption received");
               break;
 
             case "ping":
@@ -382,18 +365,22 @@ router.ws("/stream", (ws, req) => {
               break;
 
             case "agent_response":
-              console.log(`🤖 Agent says: ${msg.agent_response_event?.agent_response || "(audio)"}`);
+              clog(`AGENT SAYS: ${msg.agent_response_event?.agent_response || "(audio only)"}`);
               break;
 
             case "user_transcript":
-              console.log(`👤 User said: ${msg.user_transcription_event?.user_transcript || "(inaudible)"}`);
+              clog(`USER SAID: ${msg.user_transcription_event?.user_transcript || "(inaudible)"}`);
               break;
 
             case "conversation_initiation_metadata":
-              console.log("🟢 ElevenLabs conversation initiated — agent is live and ready");
-              // Mark ready HERE (after ElevenLabs confirms) and flush any remaining buffered audio
+              clog("EVENT: conversation_initiation_metadata — agent LIVE and READY");
               elevenLabsReady = true;
               flushAudioBuffer();
+              break;
+
+            case "conversation_ended":
+              clog("EVENT: conversation_ended from ElevenLabs — reason:", JSON.stringify(msg));
+              elevenLabsReady = false;
               break;
 
             case "internal_tentative_agent_response":
@@ -401,24 +388,37 @@ router.ws("/stream", (ws, req) => {
               break;
 
             default:
-              console.log(`🔔 ElevenLabs event: ${msg.type}`, JSON.stringify(msg).slice(0, 200));
+              clog(`EVENT from ElevenLabs: ${msg.type}`, JSON.stringify(msg).slice(0, 200));
           }
         } catch (e) {
-          console.error("Error parsing ElevenLabs message:", e);
+          clog("ERROR parsing ElevenLabs message:", e.message);
         }
       });
 
       elevenLabsWs.on("close", (code, reason) => {
-        console.log(`❌ ElevenLabs disconnected (${code}): ${reason}`);
+        clog(`ELEVENLABS CLOSED: code=${code} reason="${reason}"`);
         elevenLabsReady = false;
+        if (ws.readyState === WebSocket.OPEN && agentIdForReconnect && !isReconnecting) {
+          isReconnecting = true;
+          clog("RECONNECT: ElevenLabs dropped — reconnecting in 1s...");
+          setTimeout(async () => {
+            try {
+              await connectToElevenLabs(agentIdForReconnect);
+            } catch (err) {
+              clog("RECONNECT FAILED:", err.message);
+            } finally {
+              isReconnecting = false;
+            }
+          }, 1000);
+        }
       });
 
       elevenLabsWs.on("error", (error) => {
-        console.error("ElevenLabs WebSocket Error:", error.message);
+        clog("ELEVENLABS WS ERROR:", error.message);
         elevenLabsReady = false;
       });
     } catch (err) {
-      console.error("Failed to connect to ElevenLabs:", err.message);
+      clog("FATAL: Failed to connect to ElevenLabs:", err.message);
     }
   }
 
@@ -430,14 +430,15 @@ router.ws("/stream", (ws, req) => {
       switch (msg.event) {
         case "start":
           streamSid = msg.start.streamSid;
-          console.log(`🟢 Twilio stream started: ${streamSid}`);
+          clog(`STEP: Twilio stream STARTED — streamSid=${streamSid}`);
 
-          // Get the agent_id from custom parameters
           const agentId = msg.start.customParameters?.agent_id;
+          clog(`STEP: agent_id from params = "${agentId}"`);
           if (agentId) {
+            agentIdForReconnect = agentId;
             connectToElevenLabs(agentId);
           } else {
-            console.warn("⚠️ No agent_id in stream parameters");
+            clog("ERROR: No agent_id in stream parameters — cannot connect to ElevenLabs!");
           }
           break;
 
@@ -456,18 +457,33 @@ router.ws("/stream", (ws, req) => {
           }
           break;
 
+        case "dtmf":
+          if (msg.dtmf && msg.dtmf.digit) {
+            const digit = msg.dtmf.digit;
+            clog(`DTMF: User pressed '${digit}'`);
+            if (elevenLabsWs && elevenLabsReady && elevenLabsWs.readyState === WebSocket.OPEN) {
+              const dtmfMessage = { type: "user_message", text: `User pressed keypad: ${digit}` };
+              elevenLabsWs.send(JSON.stringify(dtmfMessage));
+              clog(`DTMF: Forwarded '${digit}' to ElevenLabs as user_message`);
+            } else {
+              clog(`DTMF: Cannot forward — elevenLabsReady=${elevenLabsReady} wsState=${elevenLabsWs?.readyState}`);
+            }
+          }
+          break;
+
         case "stop":
-          console.log("🛑 Twilio stream stopped");
+          clog("TWILIO STOP: Stream stopped by Twilio");
           if (elevenLabsWs) elevenLabsWs.close();
           break;
       }
     } catch (e) {
-      console.error("Error handling Twilio message:", e);
+      clog("ERROR handling Twilio message:", e.message);
     }
   });
 
-  ws.on("close", () => {
-    console.log("🛑 Twilio WebSocket closed");
+  ws.on("close", (code, reason) => {
+    clog(`TWILIO WS CLOSED: code=${code} reason="${reason}"`);
+    agentIdForReconnect = null;
     if (elevenLabsWs) elevenLabsWs.close();
   });
 });

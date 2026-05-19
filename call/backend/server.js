@@ -2,9 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const expressWs = require("express-ws");
 
 const app = express();
-require("express-ws")(app);
+// CRITICAL: apply express-ws to app FIRST, before any routes are loaded.
+// This patches the Router prototype so router.ws() works on sub-routers.
+expressWs(app);
+
 /* ── Middleware ── */
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json({ limit: "10mb" }));

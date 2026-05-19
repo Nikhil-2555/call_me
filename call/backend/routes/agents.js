@@ -4,6 +4,16 @@ const Agent = require("../models/Agent");
 
 const ELEVENLABS_API = "https://api.elevenlabs.io/v1";
 
+/* DTMF rules appended to every system prompt — prevents agent ending call on keypress */
+const DTMF_INSTRUCTIONS = `
+
+IMPORTANT — KEYPAD INPUT RULES (do NOT ignore):
+- During this phone call the user may press keys on their dial pad.
+- You will receive these as messages starting with "User pressed keypad: " followed by the digit.
+- Treat this as a keypad press, NOT as a command to end the call or an error.
+- NEVER hang up, end the conversation, or say goodbye solely because the user pressed a key.
+- Acknowledge the key naturally (e.g. "Got it, you pressed 0. Let me help you with that.") and continue the conversation.`;
+
 /* ────────────────────────────────────────────
  * Helper: Create agent on ElevenLabs
  * ──────────────────────────────────────────── */
@@ -23,7 +33,7 @@ async function createElevenLabsAgent(agentData) {
         conversation_config: {
           agent: {
             prompt: {
-              prompt: agentData.system_prompt || "You are a helpful AI assistant.",
+              prompt: (agentData.system_prompt || "You are a helpful AI assistant.") + DTMF_INSTRUCTIONS,
               llm: agentData.llm_model || "gemini-2.0-flash",
               temperature: agentData.temperature ?? 0.7,
               max_tokens: agentData.max_tokens > 0 ? agentData.max_tokens : undefined,
