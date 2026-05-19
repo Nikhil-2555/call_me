@@ -12,6 +12,7 @@ const twilio = require("twilio");
 
 const PhoneNumber = require("../models/PhoneNumber");
 const Agent = require("../models/Agent");
+const Conversation = require("../models/Conversation");
 const { getSignedUrl, createAgent: createElAgent, updateAgent: updateElAgent, ELEVENLABS_API } = require("../config/elevenlabs");
 const { appendDtmfInstructions } = require("../utils/dtmf");
 
@@ -104,9 +105,26 @@ router.post("/outbound", async (req, res) => {
 
     const client = twilio(TWILIO_API_KEY_SID, TWILIO_API_SECRET, { accountSid: TWILIO_ACCOUNT_SID });
     const host = (process.env.PUBLIC_URL || `http://${req.headers.host}`).replace(/^https?:\/\//, "");
+    const statusCallback = `https://${host}/call/status`;
     const twiml = `<Response><Connect><Stream url="wss://${host}/call/stream"><Parameter name="agent_id" value="${agent_id}" /></Stream></Connect></Response>`;
 
-    const call = await client.calls.create({ twiml, to: to_number, from: phone.phone_number });
+    const call = await client.calls.create({ 
+      twiml, 
+      to: to_number, 
+      from: phone.phone_number,
+      statusCallback,
+      statusCallbackEvent: ['completed', 'failed', 'busy', 'no-answer']
+    });
+
+    // Create a new Conversation record
+    await Conversation.create({
+      id: call.sid,
+      agent: agent.name || agent.agent_id,
+      duration: "0:00",
+      messages: 0,
+      evaluation: "In Progress",
+      client: { phone: to_number }
+    });
 
     console.log(`📞 Outbound call: ${call.sid} → ${to_number} (EL: ${elevenLabsAgentId})`);
     res.json({ call_id: call.sid, status: call.status, agent_id, to_number });
@@ -130,7 +148,26 @@ router.post("/incoming", async (req, res) => {
       agentId = phone.assigned_agent.agent_id;
       // Pre-warm ElevenLabs agent so the first call connects faster
       const agent = await Agent.findOne({ agent_id: agentId }).lean();
-      if (agent) await ensureElevenLabsAgent(agent).catch(console.error);
+      if (agent) {
+        await ensureElevenLabsAgent(agent).catch(console.error);
+        
+        // Create Conversation record for incoming call
+        const callSid = req.body.CallSid;
+        if (callSid) {
+          await Conversation.findOneAndUpdate(
+            { id: callSid },
+            {
+              id: callSid,
+              agent: agent.name || agent.agent_id,
+              duration: "0:00",
+              messages: 0,
+              evaluation: "In Progress",
+              client: { phone: req.body.From || "" }
+            },
+            { upsert: true }
+          );
+        }
+      }
     }
   } catch (e) {
     console.error("Error resolving incoming number:", e.message);
@@ -142,6 +179,45 @@ router.post("/incoming", async (req, res) => {
 });
 
 /* ────────────────────────────────────────────
+ * POST /call/status — Twilio Call Status Webhook
+ * ──────────────────────────────────────────── */
+router.post("/status", async (req, res) => {
+  try {
+    const { CallSid, CallStatus, CallDuration } = req.body;
+    if (!CallSid) return res.status(400).send("No CallSid");
+
+    let evaluation = "Successful";
+    if (["failed", "busy", "no-answer", "canceled"].includes(CallStatus)) {
+      evaluation = "Failed";
+    }
+
+    // Format duration string
+    let durationStr = "0:00";
+    if (CallDuration) {
+      const d = parseInt(CallDuration);
+      const minutes = Math.floor(d / 60);
+      const seconds = d % 60;
+      durationStr = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    await Conversation.findOneAndUpdate(
+      { id: CallSid },
+      { 
+        $set: { 
+          evaluation, 
+          duration: durationStr 
+        } 
+      }
+    );
+    console.log(`✅ Call ${CallSid} status updated to ${CallStatus} (Duration: ${durationStr})`);
+    res.status(200).send("OK");
+  } catch (err) {
+    console.error("Status Webhook Error:", err.message);
+    res.status(500).send("Error");
+  }
+});
+
+/* ────────────────────────────────────────────
  * WS /call/stream — Twilio ↔ ElevenLabs bridge
  * ──────────────────────────────────────────── */
 router.ws("/stream", (ws, _req) => {
@@ -149,6 +225,7 @@ router.ws("/stream", (ws, _req) => {
 
   let elevenLabsWs = null;
   let streamSid = null;
+  let callSid = null;
   let agentIdForReconnect = null;
   let isReconnecting = false;
   let elevenLabsReady = false;
@@ -216,9 +293,11 @@ router.ws("/stream", (ws, _req) => {
               break;
             case "agent_response":
               console.log(`🤖 Agent: ${msg.agent_response_event?.agent_response || "(audio)"}`);
+              if (callSid) Conversation.updateOne({ id: callSid }, { $inc: { messages: 1 } }).catch(e => {});
               break;
             case "user_transcript":
               console.log(`👤 User: ${msg.user_transcription_event?.user_transcript || "(inaudible)"}`);
+              if (callSid) Conversation.updateOne({ id: callSid }, { $inc: { messages: 1 } }).catch(e => {});
               break;
             case "conversation_ended":
               console.log("🔔 ElevenLabs conversation ended:", JSON.stringify(msg).slice(0, 200));
@@ -265,8 +344,9 @@ router.ws("/stream", (ws, _req) => {
       switch (msg.event) {
         case "start":
           streamSid = msg.start.streamSid;
+          callSid = msg.start.callSid;
           agentIdForReconnect = msg.start.customParameters?.agent_id;
-          console.log(`🟢 Stream started: ${streamSid} | agent: ${agentIdForReconnect}`);
+          console.log(`🟢 Stream started: ${streamSid} | call: ${callSid} | agent: ${agentIdForReconnect}`);
           if (agentIdForReconnect) {
             connectToElevenLabs(agentIdForReconnect);
           } else {
