@@ -454,15 +454,24 @@ export function DataTable() {
         </div>
       </TabsContent>
 
-      {/* Placeholder tabs */}
+      {/* Additional tabs */}
       <TabsContent value="past-performance" className="flex flex-col px-4 lg:px-6">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
+        <div className="flex h-40 w-full flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center text-muted-foreground">
+          <p className="mb-2 text-lg font-medium">Past Performance Data</p>
+          <p className="text-sm">Historical comparison metrics will be populated here once sufficient call volume is reached.</p>
+        </div>
       </TabsContent>
       <TabsContent value="key-personnel" className="flex flex-col px-4 lg:px-6">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
+        <div className="flex h-40 w-full flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center text-muted-foreground">
+          <p className="mb-2 text-lg font-medium">Key Personnel</p>
+          <p className="text-sm">Agents and supervisors associated with these calls will appear here.</p>
+        </div>
       </TabsContent>
       <TabsContent value="focus-documents" className="flex flex-col px-4 lg:px-6">
-        <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
+        <div className="flex h-40 w-full flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center text-muted-foreground">
+          <p className="mb-2 text-lg font-medium">Focus Documents</p>
+          <p className="text-sm">Knowledge base articles and scripts referenced during these calls will be listed here.</p>
+        </div>
       </TabsContent>
     </Tabs>
   );
