@@ -67,7 +67,7 @@ const [loading, setLoading] = React.useState(true);
     try {
       const res = await fetch(`http://localhost:8000/batch-calling/${batchId}/status`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json: BatchStatus = await res.json();
+      const json = await res.json();
       setStatus(json);
     } catch (err) {
       console.error(err);
@@ -79,19 +79,22 @@ const [loading, setLoading] = React.useState(true);
     try {
       const res = await fetch(`http://localhost:8000/batch-calling/${batchId}/recipients`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json: BatchRecipients = await res.json();
+      const json = await res.json();
       setRecipients(json.recipients);
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
     }
   }, [batchId]);
 
   /* ---------- initial load + polling ---------- */
   React.useEffect(() => {
-    fetchRecipients();
-    fetchStatus();
+    const loadAll = async () => {
+      setLoading(true);
+      await Promise.all([fetchStatus(), fetchRecipients()]);
+      setLoading(false);
+    };
+    
+    loadAll();
     const interval = setInterval(fetchStatus, 5000);
     return () => clearInterval(interval);
   }, [fetchStatus, fetchRecipients]);

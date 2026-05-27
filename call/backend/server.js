@@ -13,6 +13,7 @@ expressWs(app);
 /* ── Middleware ── */
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));  // Twilio sends form-encoded webhooks
 
 /* ── Routes ── */
 app.use("/auth",          require("./routes/auth"));
@@ -31,11 +32,16 @@ app.get("/health", (_req, res) => res.json({ status: "ok", timestamp: new Date()
 /* ── Global error handler ── */
 app.use(errorHandler);
 
+const { startBatchWorker } = require("./services/batchWorker");
+
 /* ── Start ── */
 const PORT = process.env.PORT || 8000;
 connectDB()
   .then(() => {
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+      startBatchWorker();
+    });
   })
   .catch((err) => {
     console.error("❌ Failed to start server:", err.message);

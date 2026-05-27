@@ -30,6 +30,7 @@ import { Label } from "@/components/ui/label";
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   language: z.string().default("English"),
+  voiceId: z.string().default("iP95p4xoKVk53GoZ742B"),
   additionalLanguages: z.array(z.string()).optional(),
   firstMessage: z.string().min(1, "First message is required"),
   systemPrompt: z.string().min(1, "System prompt is required"),
@@ -52,6 +53,7 @@ function safeMerge(llmData) {
   const defaults = {
     name: "",
     language: "English",
+    voiceId: "iP95p4xoKVk53GoZ742B",
     additionalLanguages: [],
     firstMessage: "",
     systemPrompt: "",
@@ -108,12 +110,14 @@ export default function CreateAgentPage() {
 
   /* ---------- Submit to FastAPI ---------- */
   async function onSubmit(values) {
-    // Map the front-end shape to the exact keys FastAPI expects
+    const langMap = { english: "en", hindi: "hi", gujarati: "gu", spanish: "es", french: "fr", german: "de", portuguese: "pt" };
+    const langCode = langMap[values.language.toLowerCase()] || values.language.toLowerCase().slice(0, 2);
+
     const payload = {
       name: values.name,
       system_prompt: values.systemPrompt,
-      voice_id: "", // optional, adjust if you have a UI for it
-      language: values.language.toLowerCase().slice(0, 2), // "English" -> "en"
+      voice_id: values.voiceId,
+      language: langCode,
       first_message: values.firstMessage,
       llm_model: values.llmProvider === "Gemini 1.5 Flash"
         ? "gemini-2.0-flash"
@@ -122,14 +126,14 @@ export default function CreateAgentPage() {
         : "claude-3-5-sonnet",
       temperature: values.temperature,
       max_tokens: values.maxTokens,
-      tts_model: "eleven_turbo_v2_5",
-      stability: 0.5,
-      similarity_boost: 0.8,
-      style: 0,
+      tts_model: "eleven_multilingual_v2",
+      stability: 0.4,
+      similarity_boost: 0.85,
+      style: 0.3,
       use_speaker_boost: true,
       asr_quality: "high",
       asr_provider: "elevenlabs",
-      turn_timeout: 7,
+      turn_timeout: 1.2,
       max_duration_seconds: 600,
       text_only: false,
       knowledge_base: [],
@@ -227,9 +231,41 @@ export default function CreateAgentPage() {
                         <SelectContent>
                           <SelectItem value="English">English</SelectItem>
                           <SelectItem value="Hindi">Hindi</SelectItem>
+                          <SelectItem value="Gujarati">Gujarati</SelectItem>
                           <SelectItem value="Spanish">Spanish</SelectItem>
+                          <SelectItem value="French">French</SelectItem>
+                          <SelectItem value="German">German</SelectItem>
                         </SelectContent>
                       </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  name="voiceId"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Agent Voice</FormLabel>
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="iP95p4xoKVk53GoZ742B">Chris — Charming, Down-to-Earth (Male)</SelectItem>
+                          <SelectItem value="cjVigY5qzO86Huf0OWal">Eric — Smooth, Trustworthy (Male)</SelectItem>
+                          <SelectItem value="cgSgspJ2msm6clMCkdW9">Jessica — Playful, Bright, Warm (Female)</SelectItem>
+                          <SelectItem value="EXAVITQu4vr4xnSDxMaL">Sarah — Mature, Reassuring (Female)</SelectItem>
+                          <SelectItem value="CwhRBWXzGAHq8TQ4Fs17">Roger — Laid-Back, Casual (Male)</SelectItem>
+                          <SelectItem value="JBFqnCBsd6RMkjVDRZzb">George — Warm Storyteller (Male)</SelectItem>
+                          <SelectItem value="SAz9YHcvj6GT2YYXdXww">River — Relaxed, Neutral (Non-binary)</SelectItem>
+                          <SelectItem value="pFZP5JQG7iQjIQuC4Bku">Lily — Velvety Actress (Female)</SelectItem>
+                          <SelectItem value="nPczCjzI2devNBz1zQrb">Brian — Deep, Comforting (Male)</SelectItem>
+                          <SelectItem value="XrExE9yKIg1WjnnlVkGX">Matilda — Professional, Upbeat (Female)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormDescription>Pick the personality your callers will hear.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

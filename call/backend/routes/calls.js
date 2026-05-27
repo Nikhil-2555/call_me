@@ -38,6 +38,10 @@ async function ensureElevenLabsAgent(agent) {
     "You are a helpful AI assistant."
   );
 
+  // Use the best voice for natural human conversation
+  // "Chris" (iP95p4xoKVk53GoZ742B) is a charming, down-to-earth conversational voice
+  const voiceId = agent.voice_id || "iP95p4xoKVk53GoZ742B";
+
   const newId = await createElAgent({
     name: agent.name || "Callify Agent",
     conversation_config: {
@@ -52,18 +56,24 @@ async function ensureElevenLabsAgent(agent) {
         language: agent.language || "en",
       },
       asr: {
-        quality: agent.asr_quality || "high",
+        quality: "high",
         provider: agent.asr_provider || "elevenlabs",
         user_input_audio_format: "ulaw_8000",   // Twilio sends mulaw 8 kHz
       },
       tts: {
-        model_id: (agent.language || "en").toLowerCase().startsWith("en")
-          ? "eleven_turbo_v2"
-          : "eleven_turbo_v2_5",
-        voice_id: agent.voice_id || undefined,
-        agent_output_audio_format: "ulaw_8000", // Twilio expects mulaw 8 kHz
+        model_id: "eleven_multilingual_v2",      // Best quality, most human-like
+        voice_id: voiceId,
+        agent_output_audio_format: "ulaw_8000",  // Twilio expects mulaw 8 kHz
+        stability: agent.stability ?? 0.4,        // Lower = more expressive & human
+        similarity_boost: agent.similarity_boost ?? 0.85,
+        style: agent.style ?? 0.3,                // Adds natural speaking style
+        use_speaker_boost: true,                  // Clearer, richer voice
+        optimize_streaming_latency: 3,            // Optimize for real-time calls
       },
-      turn: { turn_timeout: agent.turn_timeout ?? 7 },
+      turn: {
+        turn_timeout: agent.turn_timeout ?? 1.2,
+        mode: "turn",                       // Natural turn-based conversation
+      },
       conversation: { max_duration_seconds: agent.max_duration_seconds ?? 600 },
     },
   });
@@ -104,9 +114,12 @@ router.post("/outbound", async (req, res) => {
     }
 
     const client = twilio(TWILIO_API_KEY_SID, TWILIO_API_SECRET, { accountSid: TWILIO_ACCOUNT_SID });
-    const host = (process.env.PUBLIC_URL || `http://${req.headers.host}`).replace(/^https?:\/\//, "");
+    const host = (process.env.PUBLIC_URL || `http://${req.headers.host}`).replace(/^https?:\/\//, "").trim();
     const statusCallback = `https://${host}/call/status`;
-    const twiml = `<Response><Connect><Stream url="wss://${host}/call/stream"><Parameter name="agent_id" value="${agent_id}" /></Stream></Connect></Response>`;
+    const streamUrl = `wss://${host}/call/stream`;
+    console.log(`🔗 Stream URL: ${streamUrl}`);
+    // Fallback <Say> runs if the stream disconnects or fails to connect
+    const twiml = `<Response><Connect><Stream url="${streamUrl}"><Parameter name="agent_id" value="${agent_id}" /></Stream></Connect><Say>The call has ended. Goodbye.</Say></Response>`;
 
     const call = await client.calls.create({ 
       twiml, 
@@ -138,20 +151,19 @@ router.post("/outbound", async (req, res) => {
  * POST /call/incoming — Twilio Voice Webhook
  * ──────────────────────────────────────────── */
 router.post("/incoming", async (req, res) => {
-  const host = (process.env.PUBLIC_URL || `http://${req.headers.host}`).replace(/^https?:\/\//, "");
+  const host = (process.env.PUBLIC_URL || `http://${req.headers.host}`).replace(/^https?:\/\//, "").trim();
 
   let agentId = "";
   try {
     const calledNumber = req.body.Called || req.body.To || "";
+    console.log(`📞 Incoming call from ${req.body.From || "unknown"} to ${calledNumber}`);
     const phone = await PhoneNumber.findOne({ phone_number: calledNumber }).lean();
     if (phone?.assigned_agent?.agent_id) {
       agentId = phone.assigned_agent.agent_id;
-      // Pre-warm ElevenLabs agent so the first call connects faster
       const agent = await Agent.findOne({ agent_id: agentId }).lean();
       if (agent) {
         await ensureElevenLabsAgent(agent).catch(console.error);
         
-        // Create Conversation record for incoming call
         const callSid = req.body.CallSid;
         if (callSid) {
           await Conversation.findOneAndUpdate(
@@ -173,8 +185,10 @@ router.post("/incoming", async (req, res) => {
     console.error("Error resolving incoming number:", e.message);
   }
 
+  const streamUrl = `wss://${host}/call/stream`;
+  console.log(`🔗 Incoming stream URL: ${streamUrl} | agent: ${agentId}`);
   res.type("text/xml").send(
-    `<Response><Connect><Stream url="wss://${host}/call/stream"><Parameter name="agent_id" value="${agentId}" /></Stream></Connect></Response>`
+    `<Response><Connect><Stream url="${streamUrl}"><Parameter name="agent_id" value="${agentId}" /></Stream></Connect><Say>The call has ended. Goodbye.</Say></Response>`
   );
 });
 
@@ -230,6 +244,7 @@ router.ws("/stream", (ws, _req) => {
   let isReconnecting = false;
   let elevenLabsReady = false;
   let audioBuffer = [];           // Buffer audio while ElevenLabs connects
+  let ignoringConversationEnd = false; // Prevent premature close from trial DTMF
 
   /* ── Flush buffered audio to ElevenLabs ── */
   function flushAudioBuffer() {
@@ -279,7 +294,10 @@ router.ws("/stream", (ws, _req) => {
               break;
             }
             case "interruption":
-              // Optionally clear Twilio buffer: ws.send(JSON.stringify({ event: "clear", streamSid }));
+              // Clear Twilio buffer so agent stops speaking immediately when user interrupts
+              if (streamSid && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ event: "clear", streamSid }));
+              }
               break;
             case "ping":
               if (msg.ping_event?.event_id) {
@@ -302,6 +320,9 @@ router.ws("/stream", (ws, _req) => {
             case "conversation_ended":
               console.log("🔔 ElevenLabs conversation ended:", JSON.stringify(msg).slice(0, 200));
               elevenLabsReady = false;
+              // DON'T close Twilio stream here — let Twilio control the call lifecycle.
+              // On trial accounts, ElevenLabs may end prematurely due to DTMF tones in audio.
+              // The auto-reconnect in the 'close' handler will re-establish the session.
               break;
             case "internal_tentative_agent_response":
               break; // ignore
@@ -359,20 +380,16 @@ router.ws("/stream", (ws, _req) => {
             elevenLabsWs.send(JSON.stringify({ user_audio_chunk: msg.media.payload }));
           } else if (!elevenLabsReady) {
             audioBuffer.push(msg.media.payload);
-            if (audioBuffer.length > 100) audioBuffer.shift(); // cap at ~2 s
+            if (audioBuffer.length > 300) audioBuffer.shift(); // cap at ~6s for trial delay
           }
           break;
 
         case "dtmf":
           if (msg.dtmf?.digit) {
             const digit = msg.dtmf.digit;
-            console.log(`📱 DTMF: user pressed '${digit}'`);
-            if (elevenLabsWs?.readyState === WebSocket.OPEN && elevenLabsReady) {
-              elevenLabsWs.send(JSON.stringify({
-                type: "user_message",
-                text: `User pressed keypad: ${digit}`,
-              }));
-            }
+            console.log(`📱 DTMF: user pressed '${digit}' (ignored)`);
+            // We do not forward DTMF to ElevenLabs because it can cause protocol errors
+            // and terminate the agent session abruptly (which drops the call).
           }
           break;
 
