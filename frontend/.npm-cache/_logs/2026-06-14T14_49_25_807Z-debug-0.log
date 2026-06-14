@@ -1,0 +1,2179 @@
+0 verbose cli F:\New folder\node.exe F:\New folder\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:F:\New folder\node_modules\npm\npmrc
+4 silly config load:file:D:\project\callify\call_me-main\call\frontend\.npmrc
+5 silly config load:file:C:\Users\hirwa\.npmrc
+6 silly config load:file:B:\npm-global\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".npm-cache"
+9 verbose logfile logs-max:10 dir:D:\project\callify\call_me-main\call\frontend\.npm-cache\_logs\2026-06-14T14_49_25_807Z-
+10 verbose logfile D:\project\callify\call_me-main\call\frontend\.npm-cache\_logs\2026-06-14T14_49_25_807Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest typescript@>=4.8.4 <5.9.0
+15 silly packumentCache full:https://registry.npmjs.org/typescript cache-miss
+16 http cache https://registry.npmjs.org/typescript 690ms (cache hit)
+17 silly packumentCache full:https://registry.npmjs.org/typescript set size:15409943 disposed:false
+18 warn ERESOLVE overriding peer dependency {
+18 warn ERESOLVE   code: 'ERESOLVE',
+18 warn ERESOLVE   edge: {
+18 warn ERESOLVE     type: 'peer',
+18 warn ERESOLVE     name: 'typescript',
+18 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+18 warn ERESOLVE     error: 'INVALID',
+18 warn ERESOLVE     from: {
+18 warn ERESOLVE       name: '@typescript-eslint/eslint-plugin',
+18 warn ERESOLVE       version: '8.37.0',
+18 warn ERESOLVE       location: 'node_modules/@typescript-eslint/eslint-plugin',
+18 warn ERESOLVE       isWorkspace: false,
+18 warn ERESOLVE       dependents: [Array]
+18 warn ERESOLVE     }
+18 warn ERESOLVE   },
+18 warn ERESOLVE   dep: {
+18 warn ERESOLVE     name: 'typescript',
+18 warn ERESOLVE     version: '5.8.3',
+18 warn ERESOLVE     whileInstalling: {
+18 warn ERESOLVE       name: '@typescript-eslint/eslint-plugin',
+18 warn ERESOLVE       version: '8.37.0',
+18 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\eslint-plugin'
+18 warn ERESOLVE     },
+18 warn ERESOLVE     location: 'node_modules/typescript',
+18 warn ERESOLVE     isWorkspace: false,
+18 warn ERESOLVE     dependents: [ [Object] ]
+18 warn ERESOLVE   },
+18 warn ERESOLVE   force: false,
+18 warn ERESOLVE   isMine: false,
+18 warn ERESOLVE   strictPeerDeps: false,
+18 warn ERESOLVE   current: {
+18 warn ERESOLVE     name: 'typescript',
+18 warn ERESOLVE     version: '5.9.2',
+18 warn ERESOLVE     location: 'node_modules/typescript',
+18 warn ERESOLVE     isWorkspace: false,
+18 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+18 warn ERESOLVE   },
+18 warn ERESOLVE   peerConflict: {
+18 warn ERESOLVE     current: {
+18 warn ERESOLVE       name: 'typescript',
+18 warn ERESOLVE       version: '5.9.2',
+18 warn ERESOLVE       location: 'node_modules/typescript',
+18 warn ERESOLVE       isWorkspace: false,
+18 warn ERESOLVE       dependents: [Array]
+18 warn ERESOLVE     },
+18 warn ERESOLVE     peer: {
+18 warn ERESOLVE       name: 'typescript',
+18 warn ERESOLVE       version: '5.8.3',
+18 warn ERESOLVE       whileInstalling: [Object],
+18 warn ERESOLVE       location: 'node_modules/typescript',
+18 warn ERESOLVE       isWorkspace: false,
+18 warn ERESOLVE       dependents: [Array]
+18 warn ERESOLVE     }
+18 warn ERESOLVE   }
+18 warn ERESOLVE }
+19 warn ERESOLVE overriding peer dependency {
+19 warn ERESOLVE   code: 'ERESOLVE',
+19 warn ERESOLVE   edge: {
+19 warn ERESOLVE     type: 'peer',
+19 warn ERESOLVE     name: 'typescript',
+19 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+19 warn ERESOLVE     error: 'INVALID',
+19 warn ERESOLVE     from: {
+19 warn ERESOLVE       name: '@typescript-eslint/parser',
+19 warn ERESOLVE       version: '8.37.0',
+19 warn ERESOLVE       location: 'node_modules/@typescript-eslint/parser',
+19 warn ERESOLVE       isWorkspace: false,
+19 warn ERESOLVE       dependents: [Array]
+19 warn ERESOLVE     }
+19 warn ERESOLVE   },
+19 warn ERESOLVE   dep: {
+19 warn ERESOLVE     name: 'typescript',
+19 warn ERESOLVE     version: '5.8.3',
+19 warn ERESOLVE     whileInstalling: {
+19 warn ERESOLVE       name: '@typescript-eslint/parser',
+19 warn ERESOLVE       version: '8.37.0',
+19 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\parser'
+19 warn ERESOLVE     },
+19 warn ERESOLVE     location: 'node_modules/typescript',
+19 warn ERESOLVE     isWorkspace: false,
+19 warn ERESOLVE     dependents: [ [Object] ]
+19 warn ERESOLVE   },
+19 warn ERESOLVE   force: false,
+19 warn ERESOLVE   isMine: false,
+19 warn ERESOLVE   strictPeerDeps: false,
+19 warn ERESOLVE   current: {
+19 warn ERESOLVE     name: 'typescript',
+19 warn ERESOLVE     version: '5.9.2',
+19 warn ERESOLVE     location: 'node_modules/typescript',
+19 warn ERESOLVE     isWorkspace: false,
+19 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+19 warn ERESOLVE   },
+19 warn ERESOLVE   peerConflict: {
+19 warn ERESOLVE     current: {
+19 warn ERESOLVE       name: 'typescript',
+19 warn ERESOLVE       version: '5.9.2',
+19 warn ERESOLVE       location: 'node_modules/typescript',
+19 warn ERESOLVE       isWorkspace: false,
+19 warn ERESOLVE       dependents: [Array]
+19 warn ERESOLVE     },
+19 warn ERESOLVE     peer: {
+19 warn ERESOLVE       name: 'typescript',
+19 warn ERESOLVE       version: '5.8.3',
+19 warn ERESOLVE       whileInstalling: [Object],
+19 warn ERESOLVE       location: 'node_modules/typescript',
+19 warn ERESOLVE       isWorkspace: false,
+19 warn ERESOLVE       dependents: [Array]
+19 warn ERESOLVE     }
+19 warn ERESOLVE   }
+19 warn ERESOLVE }
+20 warn ERESOLVE overriding peer dependency {
+20 warn ERESOLVE   code: 'ERESOLVE',
+20 warn ERESOLVE   edge: {
+20 warn ERESOLVE     type: 'peer',
+20 warn ERESOLVE     name: 'typescript',
+20 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+20 warn ERESOLVE     error: 'INVALID',
+20 warn ERESOLVE     from: {
+20 warn ERESOLVE       name: '@typescript-eslint/project-service',
+20 warn ERESOLVE       version: '8.37.0',
+20 warn ERESOLVE       location: 'node_modules/@typescript-eslint/project-service',
+20 warn ERESOLVE       isWorkspace: false,
+20 warn ERESOLVE       dependents: [Array]
+20 warn ERESOLVE     }
+20 warn ERESOLVE   },
+20 warn ERESOLVE   dep: {
+20 warn ERESOLVE     name: 'typescript',
+20 warn ERESOLVE     version: '5.8.3',
+20 warn ERESOLVE     whileInstalling: {
+20 warn ERESOLVE       name: '@typescript-eslint/project-service',
+20 warn ERESOLVE       version: '8.37.0',
+20 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\project-service'
+20 warn ERESOLVE     },
+20 warn ERESOLVE     location: 'node_modules/typescript',
+20 warn ERESOLVE     isWorkspace: false,
+20 warn ERESOLVE     dependents: [ [Object] ]
+20 warn ERESOLVE   },
+20 warn ERESOLVE   force: false,
+20 warn ERESOLVE   isMine: false,
+20 warn ERESOLVE   strictPeerDeps: false,
+20 warn ERESOLVE   current: {
+20 warn ERESOLVE     name: 'typescript',
+20 warn ERESOLVE     version: '5.9.2',
+20 warn ERESOLVE     location: 'node_modules/typescript',
+20 warn ERESOLVE     isWorkspace: false,
+20 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+20 warn ERESOLVE   },
+20 warn ERESOLVE   peerConflict: {
+20 warn ERESOLVE     current: {
+20 warn ERESOLVE       name: 'typescript',
+20 warn ERESOLVE       version: '5.9.2',
+20 warn ERESOLVE       location: 'node_modules/typescript',
+20 warn ERESOLVE       isWorkspace: false,
+20 warn ERESOLVE       dependents: [Array]
+20 warn ERESOLVE     },
+20 warn ERESOLVE     peer: {
+20 warn ERESOLVE       name: 'typescript',
+20 warn ERESOLVE       version: '5.8.3',
+20 warn ERESOLVE       whileInstalling: [Object],
+20 warn ERESOLVE       location: 'node_modules/typescript',
+20 warn ERESOLVE       isWorkspace: false,
+20 warn ERESOLVE       dependents: [Array]
+20 warn ERESOLVE     }
+20 warn ERESOLVE   }
+20 warn ERESOLVE }
+21 warn ERESOLVE overriding peer dependency {
+21 warn ERESOLVE   code: 'ERESOLVE',
+21 warn ERESOLVE   edge: {
+21 warn ERESOLVE     type: 'peer',
+21 warn ERESOLVE     name: 'typescript',
+21 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+21 warn ERESOLVE     error: 'INVALID',
+21 warn ERESOLVE     from: {
+21 warn ERESOLVE       name: '@typescript-eslint/tsconfig-utils',
+21 warn ERESOLVE       version: '8.37.0',
+21 warn ERESOLVE       location: 'node_modules/@typescript-eslint/tsconfig-utils',
+21 warn ERESOLVE       isWorkspace: false,
+21 warn ERESOLVE       dependents: [Array]
+21 warn ERESOLVE     }
+21 warn ERESOLVE   },
+21 warn ERESOLVE   dep: {
+21 warn ERESOLVE     name: 'typescript',
+21 warn ERESOLVE     version: '5.8.3',
+21 warn ERESOLVE     whileInstalling: {
+21 warn ERESOLVE       name: '@typescript-eslint/tsconfig-utils',
+21 warn ERESOLVE       version: '8.37.0',
+21 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\tsconfig-utils'
+21 warn ERESOLVE     },
+21 warn ERESOLVE     location: 'node_modules/typescript',
+21 warn ERESOLVE     isWorkspace: false,
+21 warn ERESOLVE     dependents: [ [Object] ]
+21 warn ERESOLVE   },
+21 warn ERESOLVE   force: false,
+21 warn ERESOLVE   isMine: false,
+21 warn ERESOLVE   strictPeerDeps: false,
+21 warn ERESOLVE   current: {
+21 warn ERESOLVE     name: 'typescript',
+21 warn ERESOLVE     version: '5.9.2',
+21 warn ERESOLVE     location: 'node_modules/typescript',
+21 warn ERESOLVE     isWorkspace: false,
+21 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+21 warn ERESOLVE   },
+21 warn ERESOLVE   peerConflict: {
+21 warn ERESOLVE     current: {
+21 warn ERESOLVE       name: 'typescript',
+21 warn ERESOLVE       version: '5.9.2',
+21 warn ERESOLVE       location: 'node_modules/typescript',
+21 warn ERESOLVE       isWorkspace: false,
+21 warn ERESOLVE       dependents: [Array]
+21 warn ERESOLVE     },
+21 warn ERESOLVE     peer: {
+21 warn ERESOLVE       name: 'typescript',
+21 warn ERESOLVE       version: '5.8.3',
+21 warn ERESOLVE       whileInstalling: [Object],
+21 warn ERESOLVE       location: 'node_modules/typescript',
+21 warn ERESOLVE       isWorkspace: false,
+21 warn ERESOLVE       dependents: [Array]
+21 warn ERESOLVE     }
+21 warn ERESOLVE   }
+21 warn ERESOLVE }
+22 warn ERESOLVE overriding peer dependency {
+22 warn ERESOLVE   code: 'ERESOLVE',
+22 warn ERESOLVE   edge: {
+22 warn ERESOLVE     type: 'peer',
+22 warn ERESOLVE     name: 'typescript',
+22 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+22 warn ERESOLVE     error: 'INVALID',
+22 warn ERESOLVE     from: {
+22 warn ERESOLVE       name: '@typescript-eslint/type-utils',
+22 warn ERESOLVE       version: '8.37.0',
+22 warn ERESOLVE       location: 'node_modules/@typescript-eslint/type-utils',
+22 warn ERESOLVE       isWorkspace: false,
+22 warn ERESOLVE       dependents: [Array]
+22 warn ERESOLVE     }
+22 warn ERESOLVE   },
+22 warn ERESOLVE   dep: {
+22 warn ERESOLVE     name: 'typescript',
+22 warn ERESOLVE     version: '5.8.3',
+22 warn ERESOLVE     whileInstalling: {
+22 warn ERESOLVE       name: '@typescript-eslint/type-utils',
+22 warn ERESOLVE       version: '8.37.0',
+22 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\type-utils'
+22 warn ERESOLVE     },
+22 warn ERESOLVE     location: 'node_modules/typescript',
+22 warn ERESOLVE     isWorkspace: false,
+22 warn ERESOLVE     dependents: [ [Object] ]
+22 warn ERESOLVE   },
+22 warn ERESOLVE   force: false,
+22 warn ERESOLVE   isMine: false,
+22 warn ERESOLVE   strictPeerDeps: false,
+22 warn ERESOLVE   current: {
+22 warn ERESOLVE     name: 'typescript',
+22 warn ERESOLVE     version: '5.9.2',
+22 warn ERESOLVE     location: 'node_modules/typescript',
+22 warn ERESOLVE     isWorkspace: false,
+22 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+22 warn ERESOLVE   },
+22 warn ERESOLVE   peerConflict: {
+22 warn ERESOLVE     current: {
+22 warn ERESOLVE       name: 'typescript',
+22 warn ERESOLVE       version: '5.9.2',
+22 warn ERESOLVE       location: 'node_modules/typescript',
+22 warn ERESOLVE       isWorkspace: false,
+22 warn ERESOLVE       dependents: [Array]
+22 warn ERESOLVE     },
+22 warn ERESOLVE     peer: {
+22 warn ERESOLVE       name: 'typescript',
+22 warn ERESOLVE       version: '5.8.3',
+22 warn ERESOLVE       whileInstalling: [Object],
+22 warn ERESOLVE       location: 'node_modules/typescript',
+22 warn ERESOLVE       isWorkspace: false,
+22 warn ERESOLVE       dependents: [Array]
+22 warn ERESOLVE     }
+22 warn ERESOLVE   }
+22 warn ERESOLVE }
+23 warn ERESOLVE overriding peer dependency {
+23 warn ERESOLVE   code: 'ERESOLVE',
+23 warn ERESOLVE   edge: {
+23 warn ERESOLVE     type: 'peer',
+23 warn ERESOLVE     name: 'typescript',
+23 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+23 warn ERESOLVE     error: 'INVALID',
+23 warn ERESOLVE     from: {
+23 warn ERESOLVE       name: '@typescript-eslint/typescript-estree',
+23 warn ERESOLVE       version: '8.37.0',
+23 warn ERESOLVE       location: 'node_modules/@typescript-eslint/typescript-estree',
+23 warn ERESOLVE       isWorkspace: false,
+23 warn ERESOLVE       dependents: [Array]
+23 warn ERESOLVE     }
+23 warn ERESOLVE   },
+23 warn ERESOLVE   dep: {
+23 warn ERESOLVE     name: 'typescript',
+23 warn ERESOLVE     version: '5.8.3',
+23 warn ERESOLVE     whileInstalling: {
+23 warn ERESOLVE       name: '@typescript-eslint/typescript-estree',
+23 warn ERESOLVE       version: '8.37.0',
+23 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\typescript-estree'
+23 warn ERESOLVE     },
+23 warn ERESOLVE     location: 'node_modules/typescript',
+23 warn ERESOLVE     isWorkspace: false,
+23 warn ERESOLVE     dependents: [ [Object] ]
+23 warn ERESOLVE   },
+23 warn ERESOLVE   force: false,
+23 warn ERESOLVE   isMine: false,
+23 warn ERESOLVE   strictPeerDeps: false,
+23 warn ERESOLVE   current: {
+23 warn ERESOLVE     name: 'typescript',
+23 warn ERESOLVE     version: '5.9.2',
+23 warn ERESOLVE     location: 'node_modules/typescript',
+23 warn ERESOLVE     isWorkspace: false,
+23 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+23 warn ERESOLVE   },
+23 warn ERESOLVE   peerConflict: {
+23 warn ERESOLVE     current: {
+23 warn ERESOLVE       name: 'typescript',
+23 warn ERESOLVE       version: '5.9.2',
+23 warn ERESOLVE       location: 'node_modules/typescript',
+23 warn ERESOLVE       isWorkspace: false,
+23 warn ERESOLVE       dependents: [Array]
+23 warn ERESOLVE     },
+23 warn ERESOLVE     peer: {
+23 warn ERESOLVE       name: 'typescript',
+23 warn ERESOLVE       version: '5.8.3',
+23 warn ERESOLVE       whileInstalling: [Object],
+23 warn ERESOLVE       location: 'node_modules/typescript',
+23 warn ERESOLVE       isWorkspace: false,
+23 warn ERESOLVE       dependents: [Array]
+23 warn ERESOLVE     }
+23 warn ERESOLVE   }
+23 warn ERESOLVE }
+24 warn ERESOLVE overriding peer dependency {
+24 warn ERESOLVE   code: 'ERESOLVE',
+24 warn ERESOLVE   edge: {
+24 warn ERESOLVE     type: 'peer',
+24 warn ERESOLVE     name: 'typescript',
+24 warn ERESOLVE     spec: '>=4.8.4 <5.9.0',
+24 warn ERESOLVE     error: 'INVALID',
+24 warn ERESOLVE     from: {
+24 warn ERESOLVE       name: '@typescript-eslint/utils',
+24 warn ERESOLVE       version: '8.37.0',
+24 warn ERESOLVE       location: 'node_modules/@typescript-eslint/utils',
+24 warn ERESOLVE       isWorkspace: false,
+24 warn ERESOLVE       dependents: [Array]
+24 warn ERESOLVE     }
+24 warn ERESOLVE   },
+24 warn ERESOLVE   dep: {
+24 warn ERESOLVE     name: 'typescript',
+24 warn ERESOLVE     version: '5.8.3',
+24 warn ERESOLVE     whileInstalling: {
+24 warn ERESOLVE       name: '@typescript-eslint/utils',
+24 warn ERESOLVE       version: '8.37.0',
+24 warn ERESOLVE       path: 'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@typescript-eslint\\utils'
+24 warn ERESOLVE     },
+24 warn ERESOLVE     location: 'node_modules/typescript',
+24 warn ERESOLVE     isWorkspace: false,
+24 warn ERESOLVE     dependents: [ [Object] ]
+24 warn ERESOLVE   },
+24 warn ERESOLVE   force: false,
+24 warn ERESOLVE   isMine: false,
+24 warn ERESOLVE   strictPeerDeps: false,
+24 warn ERESOLVE   current: {
+24 warn ERESOLVE     name: 'typescript',
+24 warn ERESOLVE     version: '5.9.2',
+24 warn ERESOLVE     location: 'node_modules/typescript',
+24 warn ERESOLVE     isWorkspace: false,
+24 warn ERESOLVE     dependents: [ [Object], [Object], [Object] ]
+24 warn ERESOLVE   },
+24 warn ERESOLVE   peerConflict: {
+24 warn ERESOLVE     current: {
+24 warn ERESOLVE       name: 'typescript',
+24 warn ERESOLVE       version: '5.9.2',
+24 warn ERESOLVE       location: 'node_modules/typescript',
+24 warn ERESOLVE       isWorkspace: false,
+24 warn ERESOLVE       dependents: [Array]
+24 warn ERESOLVE     },
+24 warn ERESOLVE     peer: {
+24 warn ERESOLVE       name: 'typescript',
+24 warn ERESOLVE       version: '5.8.3',
+24 warn ERESOLVE       whileInstalling: [Object],
+24 warn ERESOLVE       location: 'node_modules/typescript',
+24 warn ERESOLVE       isWorkspace: false,
+24 warn ERESOLVE       dependents: [Array]
+24 warn ERESOLVE     }
+24 warn ERESOLVE   }
+24 warn ERESOLVE }
+25 silly reify moves {}
+26 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-wasm32-wasi
+27 silly reify mark deleted [
+27 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-wasm32-wasi'
+27 silly reify ]
+28 silly audit bulk request {
+28 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+28 silly audit   '@ampproject/remapping': [ '2.3.0' ],
+28 silly audit   '@babel/runtime': [ '7.27.6' ],
+28 silly audit   '@dnd-kit/accessibility': [ '3.1.1' ],
+28 silly audit   '@dnd-kit/core': [ '6.3.1' ],
+28 silly audit   '@dnd-kit/modifiers': [ '9.0.0' ],
+28 silly audit   '@dnd-kit/sortable': [ '10.0.0' ],
+28 silly audit   '@dnd-kit/utilities': [ '3.2.2' ],
+28 silly audit   '@emnapi/core': [ '1.4.4' ],
+28 silly audit   '@emnapi/runtime': [ '1.4.4' ],
+28 silly audit   '@emnapi/wasi-threads': [ '1.0.3' ],
+28 silly audit   '@eslint-community/eslint-utils': [ '4.7.0' ],
+28 silly audit   'eslint-visitor-keys': [ '3.4.3', '4.2.1' ],
+28 silly audit   '@eslint-community/regexpp': [ '4.12.1' ],
+28 silly audit   '@eslint/config-array': [ '0.21.0' ],
+28 silly audit   '@eslint/config-helpers': [ '0.3.0' ],
+28 silly audit   '@eslint/core': [ '0.15.1' ],
+28 silly audit   '@eslint/eslintrc': [ '3.3.1' ],
+28 silly audit   '@eslint/js': [ '9.31.0' ],
+28 silly audit   '@eslint/object-schema': [ '2.1.6' ],
+28 silly audit   '@eslint/plugin-kit': [ '0.3.3' ],
+28 silly audit   '@floating-ui/core': [ '1.7.2' ],
+28 silly audit   '@floating-ui/dom': [ '1.7.2' ],
+28 silly audit   '@floating-ui/react-dom': [ '2.1.4' ],
+28 silly audit   '@floating-ui/utils': [ '0.2.10' ],
+28 silly audit   '@hookform/resolvers': [ '5.1.1' ],
+28 silly audit   '@humanfs/core': [ '0.19.1' ],
+28 silly audit   '@humanfs/node': [ '0.16.6' ],
+28 silly audit   '@humanwhocodes/retry': [ '0.3.1', '0.4.3' ],
+28 silly audit   '@humanwhocodes/module-importer': [ '1.0.1' ],
+28 silly audit   '@img/sharp-darwin-arm64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-darwin-x64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.0' ],
+28 silly audit   '@img/sharp-linux-arm': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linux-arm64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linux-ppc64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linux-s390x': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linux-x64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-wasm32': [ '0.34.3' ],
+28 silly audit   '@img/sharp-win32-arm64': [ '0.34.3' ],
+28 silly audit   '@img/sharp-win32-ia32': [ '0.34.3' ],
+28 silly audit   '@img/sharp-win32-x64': [ '0.34.3' ],
+28 silly audit   '@isaacs/fs-minipass': [ '4.0.1' ],
+28 silly audit   '@jridgewell/gen-mapping': [ '0.3.12' ],
+28 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+28 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.4' ],
+28 silly audit   '@jridgewell/trace-mapping': [ '0.3.29' ],
+28 silly audit   '@napi-rs/wasm-runtime': [ '0.2.12' ],
+28 silly audit   '@next/env': [ '15.4.1' ],
+28 silly audit   '@next/eslint-plugin-next': [ '15.4.1' ],
+28 silly audit   '@next/swc-darwin-arm64': [ '15.4.1' ],
+28 silly audit   '@next/swc-darwin-x64': [ '15.4.1' ],
+28 silly audit   '@next/swc-linux-arm64-gnu': [ '15.4.1' ],
+28 silly audit   '@next/swc-linux-arm64-musl': [ '15.4.1' ],
+28 silly audit   '@next/swc-linux-x64-gnu': [ '15.4.1' ],
+28 silly audit   '@next/swc-linux-x64-musl': [ '15.4.1' ],
+28 silly audit   '@next/swc-win32-arm64-msvc': [ '15.4.1' ],
+28 silly audit   '@next/swc-win32-x64-msvc': [ '15.4.1' ],
+28 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+28 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+28 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+28 silly audit   '@nolyfill/is-core-module': [ '1.0.39' ],
+28 silly audit   '@radix-ui/number': [ '1.1.1' ],
+28 silly audit   '@radix-ui/primitive': [ '1.1.2' ],
+28 silly audit   '@radix-ui/react-arrow': [ '1.1.7' ],
+28 silly audit   '@radix-ui/react-avatar': [ '1.1.10' ],
+28 silly audit   '@radix-ui/react-checkbox': [ '1.3.2' ],
+28 silly audit   '@radix-ui/react-collection': [ '1.1.7' ],
+28 silly audit   '@radix-ui/react-compose-refs': [ '1.1.2' ],
+28 silly audit   '@radix-ui/react-context': [ '1.1.2' ],
+28 silly audit   '@radix-ui/react-dialog': [ '1.1.14' ],
+28 silly audit   '@radix-ui/react-direction': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-dismissable-layer': [ '1.1.10' ],
+28 silly audit   '@radix-ui/react-dropdown-menu': [ '2.1.15' ],
+28 silly audit   '@radix-ui/react-focus-guards': [ '1.1.2' ],
+28 silly audit   '@radix-ui/react-focus-scope': [ '1.1.7' ],
+28 silly audit   '@radix-ui/react-id': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-label': [ '2.1.7' ],
+28 silly audit   '@radix-ui/react-menu': [ '2.1.15' ],
+28 silly audit   '@radix-ui/react-popper': [ '1.2.7' ],
+28 silly audit   '@radix-ui/react-portal': [ '1.1.9' ],
+28 silly audit   '@radix-ui/react-presence': [ '1.1.4' ],
+28 silly audit   '@radix-ui/react-primitive': [ '2.1.3' ],
+28 silly audit   '@radix-ui/react-roving-focus': [ '1.1.10' ],
+28 silly audit   '@radix-ui/react-scroll-area': [ '1.2.9' ],
+28 silly audit   '@radix-ui/react-select': [ '2.2.5' ],
+28 silly audit   '@radix-ui/react-separator': [ '1.1.7' ],
+28 silly audit   '@radix-ui/react-slider': [ '1.3.5' ],
+28 silly audit   '@radix-ui/react-slot': [ '1.2.3' ],
+28 silly audit   '@radix-ui/react-switch': [ '1.2.5' ],
+28 silly audit   '@radix-ui/react-tabs': [ '1.1.12' ],
+28 silly audit   '@radix-ui/react-toggle': [ '1.1.9' ],
+28 silly audit   '@radix-ui/react-toggle-group': [ '1.1.10' ],
+28 silly audit   '@radix-ui/react-tooltip': [ '1.2.7' ],
+28 silly audit   '@radix-ui/react-use-callback-ref': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-use-controllable-state': [ '1.2.2' ],
+28 silly audit   '@radix-ui/react-use-effect-event': [ '0.0.2' ],
+28 silly audit   '@radix-ui/react-use-escape-keydown': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-use-is-hydrated': [ '0.1.0' ],
+28 silly audit   '@radix-ui/react-use-layout-effect': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-use-previous': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-use-rect': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-use-size': [ '1.1.1' ],
+28 silly audit   '@radix-ui/react-visually-hidden': [ '1.2.3' ],
+28 silly audit   '@radix-ui/rect': [ '1.1.1' ],
+28 silly audit   '@rtsao/scc': [ '1.1.0' ],
+28 silly audit   '@rushstack/eslint-patch': [ '1.12.0' ],
+28 silly audit   '@splinetool/react-spline': [ '4.1.0' ],
+28 silly audit   '@splinetool/runtime': [ '1.12.70' ],
+28 silly audit   '@standard-schema/utils': [ '0.3.0' ],
+28 silly audit   '@swc/helpers': [ '0.5.15' ],
+28 silly audit   '@tabler/icons': [ '3.34.0' ],
+28 silly audit   '@tabler/icons-react': [ '3.34.0' ],
+28 silly audit   '@tailwindcss/node': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.1.11' ],
+28 silly audit   '@tailwindcss/postcss': [ '4.1.11' ],
+28 silly audit   '@tanstack/query-core': [ '5.83.0' ],
+28 silly audit   '@tanstack/react-query': [ '5.83.0' ],
+28 silly audit   '@tanstack/react-table': [ '8.21.3' ],
+28 silly audit   '@tanstack/table-core': [ '8.21.3' ],
+28 silly audit   '@tybys/wasm-util': [ '0.10.0' ],
+28 silly audit   '@types/d3-array': [ '3.2.1' ],
+28 silly audit   '@types/d3-color': [ '3.1.3' ],
+28 silly audit   '@types/d3-ease': [ '3.0.2' ],
+28 silly audit   '@types/d3-interpolate': [ '3.0.4' ],
+28 silly audit   '@types/d3-path': [ '3.1.1' ],
+28 silly audit   '@types/d3-scale': [ '4.0.9' ],
+28 silly audit   '@types/d3-shape': [ '3.1.7' ],
+28 silly audit   '@types/d3-time': [ '3.0.4' ],
+28 silly audit   '@types/d3-timer': [ '3.0.2' ],
+28 silly audit   '@types/estree': [ '1.0.8' ],
+28 silly audit   '@types/json-schema': [ '7.0.15' ],
+28 silly audit   '@types/json5': [ '0.0.29' ],
+28 silly audit   '@types/node': [ '20.19.9' ],
+28 silly audit   '@types/react': [ '19.1.9' ],
+28 silly audit   '@types/react-dom': [ '19.1.6' ],
+28 silly audit   '@typescript-eslint/eslint-plugin': [ '8.37.0' ],
+28 silly audit   ignore: [ '7.0.5', '5.3.2' ],
+28 silly audit   '@typescript-eslint/parser': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/project-service': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/scope-manager': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/tsconfig-utils': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/type-utils': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/types': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/typescript-estree': [ '8.37.0' ],
+28 silly audit   'brace-expansion': [ '2.0.2', '1.1.12' ],
+28 silly audit   'fast-glob': [ '3.3.3', '3.3.1' ],
+28 silly audit   'glob-parent': [ '5.1.2', '6.0.2' ],
+28 silly audit   minimatch: [ '9.0.5', '3.1.2' ],
+28 silly audit   '@typescript-eslint/utils': [ '8.37.0' ],
+28 silly audit   '@typescript-eslint/visitor-keys': [ '8.37.0' ],
+28 silly audit   '@unrs/resolver-binding-android-arm-eabi': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-android-arm64': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-darwin-arm64': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-darwin-x64': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-freebsd-x64': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-arm-gnueabihf': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-arm-musleabihf': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-arm64-gnu': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-arm64-musl': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-ppc64-gnu': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-riscv64-gnu': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-riscv64-musl': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-s390x-gnu': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-x64-gnu': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-linux-x64-musl': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-wasm32-wasi': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-win32-arm64-msvc': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-win32-ia32-msvc': [ '1.11.1' ],
+28 silly audit   '@unrs/resolver-binding-win32-x64-msvc': [ '1.11.1' ],
+28 silly audit   acorn: [ '8.15.0' ],
+28 silly audit   'acorn-jsx': [ '5.3.2' ],
+28 silly audit   ajv: [ '6.12.6' ],
+28 silly audit   'ansi-styles': [ '4.3.0' ],
+28 silly audit   argparse: [ '2.0.1' ],
+28 silly audit   'aria-hidden': [ '1.2.6' ],
+28 silly audit   'aria-query': [ '5.3.2' ],
+28 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+28 silly audit   'array-includes': [ '3.1.9' ],
+28 silly audit   'array.prototype.findlast': [ '1.2.5' ],
+28 silly audit   'array.prototype.findlastindex': [ '1.2.6' ],
+28 silly audit   'array.prototype.flat': [ '1.3.3' ],
+28 silly audit   'array.prototype.flatmap': [ '1.3.3' ],
+28 silly audit   'array.prototype.tosorted': [ '1.1.4' ],
+28 silly audit   'arraybuffer.prototype.slice': [ '1.0.4' ],
+28 silly audit   'ast-types-flow': [ '0.0.8' ],
+28 silly audit   'async-function': [ '1.0.0' ],
+28 silly audit   asynckit: [ '0.4.0' ],
+28 silly audit   'available-typed-arrays': [ '1.0.7' ],
+28 silly audit   'axe-core': [ '4.10.3' ],
+28 silly audit   axios: [ '1.10.0' ],
+28 silly audit   'axobject-query': [ '4.1.0' ],
+28 silly audit   'balanced-match': [ '1.0.2' ],
+28 silly audit   blurhash: [ '2.0.5' ],
+28 silly audit   braces: [ '3.0.3' ],
+28 silly audit   'call-bind': [ '1.0.8' ],
+28 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+28 silly audit   'call-bound': [ '1.0.4' ],
+28 silly audit   callsites: [ '3.1.0' ],
+28 silly audit   'caniuse-lite': [ '1.0.30001727' ],
+28 silly audit   chalk: [ '4.1.2' ],
+28 silly audit   chownr: [ '3.0.0' ],
+28 silly audit   'class-variance-authority': [ '0.7.1' ],
+28 silly audit   'client-only': [ '0.0.1' ],
+28 silly audit   clsx: [ '2.1.1' ],
+28 silly audit   color: [ '4.2.3' ],
+28 silly audit   'color-convert': [ '2.0.1' ],
+28 silly audit   'color-name': [ '1.1.4' ],
+28 silly audit   'color-string': [ '1.9.1' ],
+28 silly audit   'combined-stream': [ '1.0.8' ],
+28 silly audit   'concat-map': [ '0.0.1' ],
+28 silly audit   cookie: [ '1.0.2' ],
+28 silly audit   'cross-spawn': [ '7.0.6' ],
+28 silly audit   csstype: [ '3.1.3' ],
+28 silly audit   'd3-array': [ '3.2.4' ],
+28 silly audit   'd3-color': [ '3.1.0' ],
+28 silly audit   'd3-ease': [ '3.0.1' ],
+28 silly audit   'd3-format': [ '3.1.0' ],
+28 silly audit   'd3-interpolate': [ '3.0.1' ],
+28 silly audit   'd3-path': [ '3.1.0' ],
+28 silly audit   'd3-scale': [ '4.0.2' ],
+28 silly audit   'd3-shape': [ '3.2.0' ],
+28 silly audit   'd3-time': [ '3.1.0' ],
+28 silly audit   'd3-time-format': [ '4.1.0' ],
+28 silly audit   'd3-timer': [ '3.0.1' ],
+28 silly audit   'damerau-levenshtein': [ '1.0.8' ],
+28 silly audit   'data-view-buffer': [ '1.0.2' ],
+28 silly audit   'data-view-byte-length': [ '1.0.2' ],
+28 silly audit   'data-view-byte-offset': [ '1.0.1' ],
+28 silly audit   'date-fns': [ '4.1.0' ],
+28 silly audit   debug: [ '4.4.1', '3.2.7' ],
+28 silly audit   'decimal.js-light': [ '2.5.1' ],
+28 silly audit   'deep-is': [ '0.1.4' ],
+28 silly audit   'define-data-property': [ '1.1.4' ],
+28 silly audit   'define-properties': [ '1.2.1' ],
+28 silly audit   'delayed-stream': [ '1.0.0' ],
+28 silly audit   'detect-libc': [ '2.0.4' ],
+28 silly audit   'detect-node-es': [ '1.1.0' ],
+28 silly audit   doctrine: [ '2.1.0' ],
+28 silly audit   'dom-helpers': [ '5.2.1' ],
+28 silly audit   'dunder-proto': [ '1.0.1' ],
+28 silly audit   'emoji-regex': [ '9.2.2' ],
+28 silly audit   'enhanced-resolve': [ '5.18.2' ],
+28 silly audit   'es-abstract': [ '1.24.0' ],
+28 silly audit   'es-define-property': [ '1.0.1' ],
+28 silly audit   'es-errors': [ '1.3.0' ],
+28 silly audit   'es-iterator-helpers': [ '1.2.1' ],
+28 silly audit   'es-object-atoms': [ '1.1.1' ],
+28 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+28 silly audit   'es-shim-unscopables': [ '1.1.0' ],
+28 silly audit   'es-to-primitive': [ '1.3.0' ],
+28 silly audit   'escape-string-regexp': [ '4.0.0' ],
+28 silly audit   eslint: [ '9.31.0' ],
+28 silly audit   'eslint-config-next': [ '15.4.1' ],
+28 silly audit   'eslint-import-resolver-node': [ '0.3.9' ],
+28 silly audit   'eslint-import-resolver-typescript': [ '3.10.1' ],
+28 silly audit   'eslint-module-utils': [ '2.12.1' ],
+28 silly audit   'eslint-plugin-import': [ '2.32.0' ],
+28 silly audit   semver: [ '6.3.1', '7.7.2' ],
+28 silly audit   'eslint-plugin-jsx-a11y': [ '6.10.2' ],
+28 silly audit   'eslint-plugin-react': [ '7.37.5' ],
+28 silly audit   'eslint-plugin-react-hooks': [ '5.2.0' ],
+28 silly audit   resolve: [ '2.0.0-next.5', '1.22.10' ],
+28 silly audit   'eslint-scope': [ '8.4.0' ],
+28 silly audit   espree: [ '10.4.0' ],
+28 silly audit   esquery: [ '1.6.0' ],
+28 silly audit   esrecurse: [ '4.3.0' ],
+28 silly audit   estraverse: [ '5.3.0' ],
+28 silly audit   esutils: [ '2.0.3' ],
+28 silly audit   eventemitter3: [ '4.0.7' ],
+28 silly audit   'fast-deep-equal': [ '3.1.3' ],
+28 silly audit   'fast-equals': [ '5.2.2' ],
+28 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+28 silly audit   'fast-levenshtein': [ '2.0.6' ],
+28 silly audit   fastq: [ '1.19.1' ],
+28 silly audit   'file-entry-cache': [ '8.0.0' ],
+28 silly audit   'fill-range': [ '7.1.1' ],
+28 silly audit   'find-up': [ '5.0.0' ],
+28 silly audit   'flat-cache': [ '4.0.1' ],
+28 silly audit   flatted: [ '3.3.3' ],
+28 silly audit   'follow-redirects': [ '1.15.9' ],
+28 silly audit   'for-each': [ '0.3.5' ],
+28 silly audit   'form-data': [ '4.0.4' ],
+28 silly audit   'framer-motion': [ '12.23.6' ],
+28 silly audit   'function-bind': [ '1.1.2' ],
+28 silly audit   'function.prototype.name': [ '1.1.8' ],
+28 silly audit   'functions-have-names': [ '1.2.3' ],
+28 silly audit   'get-intrinsic': [ '1.3.0' ],
+28 silly audit   'get-nonce': [ '1.0.1' ],
+28 silly audit   'get-proto': [ '1.0.1' ],
+28 silly audit   'get-symbol-description': [ '1.1.0' ],
+28 silly audit   'get-tsconfig': [ '4.10.1' ],
+28 silly audit   globals: [ '14.0.0' ],
+28 silly audit   globalthis: [ '1.0.4' ],
+28 silly audit   gopd: [ '1.2.0' ],
+28 silly audit   'graceful-fs': [ '4.2.11' ],
+28 silly audit   graphemer: [ '1.4.0' ],
+28 silly audit   'has-bigints': [ '1.1.0' ],
+28 silly audit   'has-flag': [ '4.0.0' ],
+28 silly audit   'has-property-descriptors': [ '1.0.2' ],
+28 silly audit   'has-proto': [ '1.2.0' ],
+28 silly audit   'has-symbols': [ '1.1.0' ],
+28 silly audit   'has-tostringtag': [ '1.0.2' ],
+28 silly audit   hasown: [ '2.0.2' ],
+28 silly audit   'import-fresh': [ '3.3.1' ],
+28 silly audit   imurmurhash: [ '0.1.4' ],
+28 silly audit   'internal-slot': [ '1.1.0' ],
+28 silly audit   internmap: [ '2.0.3' ],
+28 silly audit   'is-array-buffer': [ '3.0.5' ],
+28 silly audit   'is-arrayish': [ '0.3.2' ],
+28 silly audit   'is-async-function': [ '2.1.1' ],
+28 silly audit   'is-bigint': [ '1.1.0' ],
+28 silly audit   'is-boolean-object': [ '1.2.2' ],
+28 silly audit   'is-bun-module': [ '2.0.0' ],
+28 silly audit   'is-callable': [ '1.2.7' ],
+28 silly audit   'is-core-module': [ '2.16.1' ],
+28 silly audit   'is-data-view': [ '1.0.2' ],
+28 silly audit   'is-date-object': [ '1.1.0' ],
+28 silly audit   'is-extglob': [ '2.1.1' ],
+28 silly audit   'is-finalizationregistry': [ '1.1.1' ],
+28 silly audit   'is-generator-function': [ '1.1.0' ],
+28 silly audit   'is-glob': [ '4.0.3' ],
+28 silly audit   'is-map': [ '2.0.3' ],
+28 silly audit   'is-negative-zero': [ '2.0.3' ],
+28 silly audit   'is-number': [ '7.0.0' ],
+28 silly audit   'is-number-object': [ '1.1.1' ],
+28 silly audit   'is-regex': [ '1.2.1' ],
+28 silly audit   'is-set': [ '2.0.3' ],
+28 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+28 silly audit   'is-string': [ '1.1.1' ],
+28 silly audit   'is-symbol': [ '1.1.1' ],
+28 silly audit   'is-typed-array': [ '1.1.15' ],
+28 silly audit   'is-weakmap': [ '2.0.2' ],
+28 silly audit   'is-weakref': [ '1.1.1' ],
+28 silly audit   'is-weakset': [ '2.0.4' ],
+28 silly audit   isarray: [ '2.0.5' ],
+28 silly audit   isexe: [ '2.0.0' ],
+28 silly audit   'iterator.prototype': [ '1.1.5' ],
+28 silly audit   jiti: [ '2.4.2' ],
+28 silly audit   'js-tokens': [ '4.0.0' ],
+28 silly audit   'js-yaml': [ '4.1.0' ],
+28 silly audit   'json-buffer': [ '3.0.1' ],
+28 silly audit   'json-schema-traverse': [ '0.4.1' ],
+28 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
+28 silly audit   json5: [ '1.0.2' ],
+28 silly audit   'jsx-ast-utils': [ '3.3.5' ],
+28 silly audit   keyv: [ '4.5.4' ],
+28 silly audit   'language-subtag-registry': [ '0.3.23' ],
+28 silly audit   'language-tags': [ '1.0.9' ],
+28 silly audit   levn: [ '0.4.1' ],
+28 silly audit   lightningcss: [ '1.30.1' ],
+28 silly audit   'lightningcss-darwin-arm64': [ '1.30.1' ],
+28 silly audit   'lightningcss-darwin-x64': [ '1.30.1' ],
+28 silly audit   'lightningcss-freebsd-x64': [ '1.30.1' ],
+28 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.30.1' ],
+28 silly audit   'lightningcss-linux-arm64-gnu': [ '1.30.1' ],
+28 silly audit   'lightningcss-linux-arm64-musl': [ '1.30.1' ],
+28 silly audit   'lightningcss-linux-x64-gnu': [ '1.30.1' ],
+28 silly audit   'lightningcss-linux-x64-musl': [ '1.30.1' ],
+28 silly audit   'lightningcss-win32-arm64-msvc': [ '1.30.1' ],
+28 silly audit   'lightningcss-win32-x64-msvc': [ '1.30.1' ],
+28 silly audit   'locate-path': [ '6.0.0' ],
+28 silly audit   lodash: [ '4.17.21' ],
+28 silly audit   'lodash.debounce': [ '4.0.8' ],
+28 silly audit   'lodash.merge': [ '4.6.2' ],
+28 silly audit   'loose-envify': [ '1.4.0' ],
+28 silly audit   'lucide-react': [ '0.525.0' ],
+28 silly audit   'magic-string': [ '0.30.17' ],
+28 silly audit   'math-intrinsics': [ '1.1.0' ],
+28 silly audit   merge2: [ '1.4.1' ],
+28 silly audit   micromatch: [ '4.0.8' ],
+28 silly audit   'mime-db': [ '1.52.0' ],
+28 silly audit   'mime-types': [ '2.1.35' ],
+28 silly audit   minimist: [ '1.2.8' ],
+28 silly audit   minipass: [ '7.1.2' ],
+28 silly audit   minizlib: [ '3.0.2' ],
+28 silly audit   mkdirp: [ '3.0.1' ],
+28 silly audit   motion: [ '12.23.6' ],
+28 silly audit   'motion-dom': [ '12.23.6' ],
+28 silly audit   'motion-utils': [ '12.23.6' ],
+28 silly audit   ms: [ '2.1.3' ],
+28 silly audit   nanoid: [ '3.3.11' ],
+28 silly audit   'napi-postinstall': [ '0.3.0' ],
+28 silly audit   'natural-compare': [ '1.4.0' ],
+28 silly audit   next: [ '15.4.1' ],
+28 silly audit   'next-themes': [ '0.4.6' ],
+28 silly audit   postcss: [ '8.4.31', '8.5.6' ],
+28 silly audit   'object-assign': [ '4.1.1' ],
+28 silly audit   'object-inspect': [ '1.13.4' ],
+28 silly audit   'object-keys': [ '1.1.1' ],
+28 silly audit   'object.assign': [ '4.1.7' ],
+28 silly audit   'object.entries': [ '1.1.9' ],
+28 silly audit   'object.fromentries': [ '2.0.8' ],
+28 silly audit   'object.groupby': [ '1.0.3' ],
+28 silly audit   'object.values': [ '1.2.1' ],
+28 silly audit   'on-change': [ '4.0.0' ],
+28 silly audit   optionator: [ '0.9.4' ],
+28 silly audit   'own-keys': [ '1.0.1' ],
+28 silly audit   'p-limit': [ '3.1.0' ],
+28 silly audit   'p-locate': [ '5.0.0' ],
+28 silly audit   'parent-module': [ '1.0.1' ],
+28 silly audit   'path-exists': [ '4.0.0' ],
+28 silly audit   'path-key': [ '3.1.1' ],
+28 silly audit   'path-parse': [ '1.0.7' ],
+28 silly audit   picocolors: [ '1.1.1' ],
+28 silly audit   picomatch: [ '2.3.1', '4.0.3' ],
+28 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+28 silly audit   'prelude-ls': [ '1.2.1' ],
+28 silly audit   'prop-types': [ '15.8.1' ],
+28 silly audit   'proxy-from-env': [ '1.1.0' ],
+28 silly audit   punycode: [ '2.3.1' ],
+28 silly audit   'queue-microtask': [ '1.2.3' ],
+28 silly audit   react: [ '19.1.0' ],
+28 silly audit   'react-dom': [ '19.1.0' ],
+28 silly audit   'react-hook-form': [ '7.60.0' ],
+28 silly audit   'react-icons': [ '5.5.0' ],
+28 silly audit   'react-is': [ '16.13.1', '18.3.1' ],
+28 silly audit   'react-merge-refs': [ '2.1.1' ],
+28 silly audit   'react-remove-scroll': [ '2.7.1' ],
+28 silly audit   'react-remove-scroll-bar': [ '2.3.8' ],
+28 silly audit   'react-router': [ '7.7.0' ],
+28 silly audit   'react-router-dom': [ '7.7.0' ],
+28 silly audit   'react-smooth': [ '4.0.4' ],
+28 silly audit   'react-style-singleton': [ '2.2.3' ],
+28 silly audit   'react-transition-group': [ '4.4.5' ],
+28 silly audit   recharts: [ '2.15.4' ],
+28 silly audit   'recharts-scale': [ '0.4.5' ],
+28 silly audit   'reflect.getprototypeof': [ '1.0.10' ],
+28 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+28 silly audit   'resolve-from': [ '4.0.0' ],
+28 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+28 silly audit   reusify: [ '1.1.0' ],
+28 silly audit   'run-parallel': [ '1.2.0' ],
+28 silly audit   'safe-array-concat': [ '1.1.3' ],
+28 silly audit   'safe-push-apply': [ '1.0.0' ],
+28 silly audit   'safe-regex-test': [ '1.1.0' ],
+28 silly audit   scheduler: [ '0.26.0' ],
+28 silly audit   'semver-compare': [ '1.0.0' ],
+28 silly audit   'set-cookie-parser': [ '2.7.1' ],
+28 silly audit   'set-function-length': [ '1.2.2' ],
+28 silly audit   'set-function-name': [ '2.0.2' ],
+28 silly audit   'set-proto': [ '1.0.0' ],
+28 silly audit   sharp: [ '0.34.3' ],
+28 silly audit   'shebang-command': [ '2.0.0' ],
+28 silly audit   'shebang-regex': [ '3.0.0' ],
+28 silly audit   'side-channel': [ '1.1.0' ],
+28 silly audit   'side-channel-list': [ '1.0.0' ],
+28 silly audit   'side-channel-map': [ '1.0.1' ],
+28 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+28 silly audit   'simple-swizzle': [ '0.2.2' ],
+28 silly audit   sonner: [ '2.0.6' ],
+28 silly audit   'source-map-js': [ '1.2.1' ],
+28 silly audit   'stable-hash': [ '0.0.5' ],
+28 silly audit   'stop-iteration-iterator': [ '1.1.0' ],
+28 silly audit   'string.prototype.includes': [ '2.0.1' ],
+28 silly audit   'string.prototype.matchall': [ '4.0.12' ],
+28 silly audit   'string.prototype.repeat': [ '1.0.0' ],
+28 silly audit   'string.prototype.trim': [ '1.2.10' ],
+28 silly audit   'string.prototype.trimend': [ '1.0.9' ],
+28 silly audit   'string.prototype.trimstart': [ '1.0.8' ],
+28 silly audit   'strip-bom': [ '3.0.0' ],
+28 silly audit   'strip-json-comments': [ '3.1.1' ],
+28 silly audit   'styled-jsx': [ '5.1.6' ],
+28 silly audit   'supports-color': [ '7.2.0' ],
+28 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+28 silly audit   'tailwind-merge': [ '3.3.1' ],
+28 silly audit   tailwindcss: [ '4.1.11' ],
+28 silly audit   tapable: [ '2.2.2' ],
+28 silly audit   tar: [ '7.4.3' ],
+28 silly audit   thumbhash: [ '0.1.1' ],
+28 silly audit   'tiny-invariant': [ '1.3.3' ],
+28 silly audit   tinyglobby: [ '0.2.14' ],
+28 silly audit   fdir: [ '6.4.6' ],
+28 silly audit   'to-regex-range': [ '5.0.1' ],
+28 silly audit   'ts-api-utils': [ '2.1.0' ],
+28 silly audit   'tsconfig-paths': [ '3.15.0' ],
+28 silly audit   tslib: [ '2.8.1' ],
+28 silly audit   'tw-animate-css': [ '1.3.5' ],
+28 silly audit   'type-check': [ '0.4.0' ],
+28 silly audit   'typed-array-buffer': [ '1.0.3' ],
+28 silly audit   'typed-array-byte-length': [ '1.0.3' ],
+28 silly audit   'typed-array-byte-offset': [ '1.0.4' ],
+28 silly audit   'typed-array-length': [ '1.0.7' ],
+28 silly audit   typescript: [ '5.9.2' ],
+28 silly audit   'unbox-primitive': [ '1.1.0' ],
+28 silly audit   'undici-types': [ '6.21.0' ],
+28 silly audit   'unrs-resolver': [ '1.11.1' ],
+28 silly audit   'uri-js': [ '4.4.1' ],
+28 silly audit   'use-callback-ref': [ '1.3.3' ],
+28 silly audit   'use-sidecar': [ '1.1.3' ],
+28 silly audit   'use-sync-external-store': [ '1.5.0' ],
+28 silly audit   vaul: [ '1.1.2' ],
+28 silly audit   'victory-vendor': [ '36.9.2' ],
+28 silly audit   which: [ '2.0.2' ],
+28 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+28 silly audit   'which-builtin-type': [ '1.2.1' ],
+28 silly audit   'which-collection': [ '1.0.2' ],
+28 silly audit   'which-typed-array': [ '1.1.19' ],
+28 silly audit   'word-wrap': [ '1.2.5' ],
+28 silly audit   yallist: [ '5.0.0' ],
+28 silly audit   'yocto-queue': [ '0.1.0' ],
+28 silly audit   zod: [ '4.0.5' ],
+28 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.1.11' ]
+28 silly audit }
+29 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-win32-arm64-msvc
+30 silly reify mark deleted [
+30 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-win32-arm64-msvc'
+30 silly reify ]
+31 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-linux-x64-musl
+32 silly reify mark deleted [
+32 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-linux-x64-musl'
+32 silly reify ]
+33 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-linux-x64-gnu
+34 silly reify mark deleted [
+34 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-linux-x64-gnu'
+34 silly reify ]
+35 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-linux-arm64-musl
+36 silly reify mark deleted [
+36 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-linux-arm64-musl'
+36 silly reify ]
+37 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-linux-arm64-gnu
+38 silly reify mark deleted [
+38 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-linux-arm64-gnu'
+38 silly reify ]
+39 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-linux-arm-gnueabihf
+40 silly reify mark deleted [
+40 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-linux-arm-gnueabihf'
+40 silly reify ]
+41 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-freebsd-x64
+42 silly reify mark deleted [
+42 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-freebsd-x64'
+42 silly reify ]
+43 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-darwin-x64
+44 silly reify mark deleted [
+44 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-darwin-x64'
+44 silly reify ]
+45 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\lightningcss-darwin-arm64
+46 silly reify mark deleted [
+46 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\lightningcss-darwin-arm64'
+46 silly reify ]
+47 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-win32-ia32-msvc
+48 silly reify mark deleted [
+48 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-win32-ia32-msvc'
+48 silly reify ]
+49 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-win32-arm64-msvc
+50 silly reify mark deleted [
+50 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-win32-arm64-msvc'
+50 silly reify ]
+51 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-wasm32-wasi
+52 silly reify mark deleted [
+52 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-wasm32-wasi'
+52 silly reify ]
+53 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-x64-musl
+54 silly reify mark deleted [
+54 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-x64-musl'
+54 silly reify ]
+55 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-x64-gnu
+56 silly reify mark deleted [
+56 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-x64-gnu'
+56 silly reify ]
+57 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-s390x-gnu
+58 silly reify mark deleted [
+58 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-s390x-gnu'
+58 silly reify ]
+59 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-riscv64-musl
+60 silly reify mark deleted [
+60 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-riscv64-musl'
+60 silly reify ]
+61 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-riscv64-gnu
+62 silly reify mark deleted [
+62 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-riscv64-gnu'
+62 silly reify ]
+63 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-ppc64-gnu
+64 silly reify mark deleted [
+64 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-ppc64-gnu'
+64 silly reify ]
+65 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-arm64-musl
+66 silly reify mark deleted [
+66 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-arm64-musl'
+66 silly reify ]
+67 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-arm64-gnu
+68 silly reify mark deleted [
+68 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-arm64-gnu'
+68 silly reify ]
+69 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-arm-musleabihf
+70 silly reify mark deleted [
+70 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-arm-musleabihf'
+70 silly reify ]
+71 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-linux-arm-gnueabihf
+72 silly reify mark deleted [
+72 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-linux-arm-gnueabihf'
+72 silly reify ]
+73 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-freebsd-x64
+74 silly reify mark deleted [
+74 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-freebsd-x64'
+74 silly reify ]
+75 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-darwin-x64
+76 silly reify mark deleted [
+76 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-darwin-x64'
+76 silly reify ]
+77 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-darwin-arm64
+78 silly reify mark deleted [
+78 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-darwin-arm64'
+78 silly reify ]
+79 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-android-arm64
+80 silly reify mark deleted [
+80 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-android-arm64'
+80 silly reify ]
+81 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@unrs\resolver-binding-android-arm-eabi
+82 silly reify mark deleted [
+82 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@unrs\\resolver-binding-android-arm-eabi'
+82 silly reify ]
+83 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-win32-arm64-msvc
+84 silly reify mark deleted [
+84 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-win32-arm64-msvc'
+84 silly reify ]
+85 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-linux-x64-musl
+86 silly reify mark deleted [
+86 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-linux-x64-musl'
+86 silly reify ]
+87 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-linux-x64-gnu
+88 silly reify mark deleted [
+88 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-linux-x64-gnu'
+88 silly reify ]
+89 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-linux-arm64-musl
+90 silly reify mark deleted [
+90 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm64-musl'
+90 silly reify ]
+91 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-linux-arm64-gnu
+92 silly reify mark deleted [
+92 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm64-gnu'
+92 silly reify ]
+93 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-linux-arm-gnueabihf
+94 silly reify mark deleted [
+94 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm-gnueabihf'
+94 silly reify ]
+95 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-freebsd-x64
+96 silly reify mark deleted [
+96 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-freebsd-x64'
+96 silly reify ]
+97 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-darwin-x64
+98 silly reify mark deleted [
+98 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-darwin-x64'
+98 silly reify ]
+99 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-darwin-arm64
+100 silly reify mark deleted [
+100 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-darwin-arm64'
+100 silly reify ]
+101 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@tailwindcss\oxide-android-arm64
+102 silly reify mark deleted [
+102 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@tailwindcss\\oxide-android-arm64'
+102 silly reify ]
+103 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-win32-arm64-msvc
+104 silly reify mark deleted [
+104 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-win32-arm64-msvc'
+104 silly reify ]
+105 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-linux-x64-musl
+106 silly reify mark deleted [
+106 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-linux-x64-musl'
+106 silly reify ]
+107 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-linux-x64-gnu
+108 silly reify mark deleted [
+108 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-linux-x64-gnu'
+108 silly reify ]
+109 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-linux-arm64-musl
+110 silly reify mark deleted [
+110 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-linux-arm64-musl'
+110 silly reify ]
+111 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-linux-arm64-gnu
+112 silly reify mark deleted [
+112 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-linux-arm64-gnu'
+112 silly reify ]
+113 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-darwin-x64
+114 silly reify mark deleted [
+114 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-darwin-x64'
+114 silly reify ]
+115 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@next\swc-darwin-arm64
+116 silly reify mark deleted [
+116 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@next\\swc-darwin-arm64'
+116 silly reify ]
+117 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-win32-ia32
+118 silly reify mark deleted [
+118 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-win32-ia32'
+118 silly reify ]
+119 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-win32-arm64
+120 silly reify mark deleted [
+120 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-win32-arm64'
+120 silly reify ]
+121 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-wasm32
+122 silly reify mark deleted [
+122 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-wasm32'
+122 silly reify ]
+123 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linuxmusl-x64
+124 silly reify mark deleted [
+124 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linuxmusl-x64'
+124 silly reify ]
+125 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linuxmusl-arm64
+126 silly reify mark deleted [
+126 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linuxmusl-arm64'
+126 silly reify ]
+127 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linux-x64
+128 silly reify mark deleted [
+128 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linux-x64'
+128 silly reify ]
+129 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linux-s390x
+130 silly reify mark deleted [
+130 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linux-s390x'
+130 silly reify ]
+131 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linux-ppc64
+132 silly reify mark deleted [
+132 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linux-ppc64'
+132 silly reify ]
+133 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linux-arm64
+134 silly reify mark deleted [
+134 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linux-arm64'
+134 silly reify ]
+135 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-linux-arm
+136 silly reify mark deleted [
+136 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-linux-arm'
+136 silly reify ]
+137 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linuxmusl-x64
+138 silly reify mark deleted [
+138 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linuxmusl-x64'
+138 silly reify ]
+139 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linuxmusl-arm64
+140 silly reify mark deleted [
+140 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linuxmusl-arm64'
+140 silly reify ]
+141 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linux-x64
+142 silly reify mark deleted [
+142 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linux-x64'
+142 silly reify ]
+143 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linux-s390x
+144 silly reify mark deleted [
+144 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linux-s390x'
+144 silly reify ]
+145 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linux-ppc64
+146 silly reify mark deleted [
+146 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linux-ppc64'
+146 silly reify ]
+147 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linux-arm64
+148 silly reify mark deleted [
+148 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linux-arm64'
+148 silly reify ]
+149 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-linux-arm
+150 silly reify mark deleted [
+150 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-linux-arm'
+150 silly reify ]
+151 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-darwin-x64
+152 silly reify mark deleted [
+152 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-darwin-x64'
+152 silly reify ]
+153 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-libvips-darwin-arm64
+154 silly reify mark deleted [
+154 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-libvips-darwin-arm64'
+154 silly reify ]
+155 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-darwin-x64
+156 silly reify mark deleted [
+156 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-darwin-x64'
+156 silly reify ]
+157 verbose reify failed optional dependency D:\project\callify\call_me-main\call\frontend\node_modules\@img\sharp-darwin-arm64
+158 silly reify mark deleted [
+158 silly reify   'D:\\project\\callify\\call_me-main\\call\\frontend\\node_modules\\@img\\sharp-darwin-arm64'
+158 silly reify ]
+159 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 2508ms
+160 silly audit report {
+160 silly audit report   '@eslint/plugin-kit': [
+160 silly audit report     {
+160 silly audit report       id: 1106734,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-xffm-g5w8-qvg7',
+160 silly audit report       title: '@eslint/plugin-kit is vulnerable to Regular Expression Denial of Service attacks through ConfigCommentParser',
+160 silly audit report       severity: 'low',
+160 silly audit report       vulnerable_versions: '<0.3.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   'brace-expansion': [
+160 silly audit report     {
+160 silly audit report       id: 1115540,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-f886-m6hf-6m8v',
+160 silly audit report       title: 'brace-expansion: Zero-step sequence causes process hang and memory exhaustion',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<1.1.13',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115541,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-f886-m6hf-6m8v',
+160 silly audit report       title: 'brace-expansion: Zero-step sequence causes process hang and memory exhaustion',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=2.0.0 <2.0.3',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   minimatch: [
+160 silly audit report     {
+160 silly audit report       id: 1113459,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3ppc-4f35-3m26',
+160 silly audit report       title: 'minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<3.1.3',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113465,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3ppc-4f35-3m26',
+160 silly audit report       title: 'minimatch has a ReDoS via repeated wildcards with non-matching literal in pattern',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=9.0.0 <9.0.6',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113538,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-7r86-cg39-jmmj',
+160 silly audit report       title: 'minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<3.1.3',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113544,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-7r86-cg39-jmmj',
+160 silly audit report       title: 'minimatch has ReDoS: matchOne() combinatorial backtracking via multiple non-adjacent GLOBSTAR segments',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=9.0.0 <9.0.7',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113546,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-23c5-xmqv-rm74',
+160 silly audit report       title: 'minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<3.1.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113552,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-23c5-xmqv-rm74',
+160 silly audit report       title: 'minimatch ReDoS: nested *() extglobs generate catastrophically backtracking regular expressions',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=9.0.0 <9.0.7',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   ajv: [
+160 silly audit report     {
+160 silly audit report       id: 1113714,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-2g4f-4pwh-qvx6',
+160 silly audit report       title: 'ajv has ReDoS when using `$data` option',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<6.14.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   axios: [
+160 silly audit report     {
+160 silly audit report       id: 1118607,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-q8qp-cvcw-x6jj',
+160 silly audit report       title: 'Axios has prototype pollution read-side gadgets in HTTP adapter that allow credential injection and request hijacking',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112195,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-4hjh-wcwx-xvwj',
+160 silly audit report       title: 'Axios is vulnerable to DoS attack through lack of data size check',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.12.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1119404,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-fvcv-3m26-pcqx',
+160 silly audit report       title: 'Axios has Unrestricted Cloud Metadata Exfiltration via Header Injection Chain',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1119667,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-pjwm-pj3p-43mv',
+160 silly audit report       title: "axios's shouldBypassProxy does not recognize IPv4-mapped IPv6 addresses, allowing NO_PROXY bypass (incomplete fix for CVE-2025-62718)",
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120125,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-62hf-57xw-28j9',
+160 silly audit report       title: 'Axios: unbounded recursion in toFormData causes DoS via deeply nested request data',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120547,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-hfxv-24rg-xrqf',
+160 silly audit report       title: 'Axios: Regular Expression Denial of Service (ReDoS) via Cookie Name Injection',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120643,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-777c-7fjr-54vf',
+160 silly audit report       title: 'Allocation of Resources Without Limits or Throttling in Axios',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.7.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120645,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-p92q-9vqr-4j8v',
+160 silly audit report       title: 'Axios: Proxy-Authorization Credential Leak to Origin Server Across HTTP-to-HTTPS Redirect in Axios Node.js HTTP Adapter',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120647,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-j5f8-grm9-p9fc',
+160 silly audit report       title: 'Axios: Proxy-Authorization header leaks to redirect target when proxy is re-evaluated to direct connection',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120649,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3g43-6gmg-66jw',
+160 silly audit report       title: 'axios Vulnerable to Credential Theft and Response Hijacking via Prototype Pollution Gadget in Config Merge',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120650,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-35jp-ww65-95wh',
+160 silly audit report       title: 'axios Vulnerable to Full Man-in-the-Middle via Prototype Pollution Gadget in `config.proxy`',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120652,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-898c-q2cr-xwhg',
+160 silly audit report       title: 'axios has DoS & Header Injection via Prototype Pollution Read-Side Gadgets in axios merge functions',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.16.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1116673,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3p68-rc4w-qgx5',
+160 silly audit report       title: 'Axios has a NO_PROXY Hostname Normalization Bypass that Leads to SSRF',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117574,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-w9j2-pvgh-6h63',
+160 silly audit report       title: 'Axios: Authentication Bypass via Prototype Pollution Gadget in `validateStatus` Merge Strategy',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117576,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-pmwg-cvhr-8vh7',
+160 silly audit report       title: 'Axios: Incomplete Fix for CVE-2025-62718 — NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117577,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3w6x-2g7m-8v23',
+160 silly audit report       title: 'Axios: Invisible JSON Response Tampering via Prototype Pollution Gadget in `parseReviver`',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117580,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-xhjh-pmcv-23jw',
+160 silly audit report       title: 'Axios: Null Byte Injection via Reverse-Encoding in AxiosURLSearchParams',
+160 silly audit report       severity: 'low',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117581,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-445q-vr5w-6q77',
+160 silly audit report       title: 'Axios: CRLF Injection in multipart/form-data body via unsanitized blob.type in formDataToStream',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117583,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-m7pr-hjqh-92cm',
+160 silly audit report       title: 'Axios: no_proxy bypass via IP alias allows SSRF',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117587,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-5c9x-8gcm-mpgx',
+160 silly audit report       title: "Axios' HTTP adapter-streamed uploads bypass maxBodyLength when maxRedirects: 0",
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117589,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-vf2m-468p-8v99',
+160 silly audit report       title: 'Axios: HTTP adapter streamed responses bypass maxContentLength',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117591,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-pf86-5x62-jrwf',
+160 silly audit report       title: 'Axios: Prototype Pollution Gadgets - Response Tampering, Data Exfiltration, and Request Hijacking',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117593,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-6chq-wfr3-2hj9',
+160 silly audit report       title: 'Axios: Header Injection via Prototype Pollution',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117595,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-xx6v-rp6x-q39c',
+160 silly audit report       title: 'Axios: XSRF Token Cross-Origin Leakage via Prototype Pollution Gadget in `withXSRFToken` Boolean Coercion',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <1.15.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1117858,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-43fc-jf86-j433',
+160 silly audit report       title: 'Axios is Vulnerable to Denial of Service via __proto__ Key in mergeConfig',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=1.0.0 <=1.13.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   flatted: [
+160 silly audit report     {
+160 silly audit report       id: 1114526,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-25h7-pfq9-p65f',
+160 silly audit report       title: 'flatted vulnerable to unbounded recursion DoS in parse() revive phase',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<3.4.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115357,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-rf6f-7fwh-wjgh',
+160 silly audit report       title: 'Prototype Pollution via parse() in NodeJS flatted',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<=3.4.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   'follow-redirects': [
+160 silly audit report     {
+160 silly audit report       id: 1116560,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-r4q5-vmmm-2653',
+160 silly audit report       title: 'follow-redirects leaks Custom Authentication Headers to Cross-Domain Redirect Targets',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<=1.15.11',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   'js-yaml': [
+160 silly audit report     {
+160 silly audit report       id: 1112715,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-mh29-5h37-fv8m',
+160 silly audit report       title: 'js-yaml has prototype pollution in merge (<<)',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=4.0.0 <4.1.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   lodash: [
+160 silly audit report     {
+160 silly audit report       id: 1120370,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-xxjr-mmjv-4gpg',
+160 silly audit report       title: 'Lodash has Prototype Pollution Vulnerability in `_.unset` and `_.omit` functions',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=4.0.0 <=4.17.22',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115806,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-r5fr-rjxr-66jc',
+160 silly audit report       title: 'lodash vulnerable to Code Injection via `_.template` imports key names',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=4.0.0 <=4.17.23',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115810,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-f23m-r3pf-42rh',
+160 silly audit report       title: 'lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<=4.17.23',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   next: [
+160 silly audit report     {
+160 silly audit report       id: 1117931,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-8h8q-6873-q5fj',
+160 silly audit report       title: 'Next.js Vulnerable to Denial of Service with Server Components',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1111369,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-9qr9-h5gf-34mp',
+160 silly audit report       title: 'Next.js is vulnerable to RCE in React flight protocol',
+160 silly audit report       severity: 'critical',
+160 silly audit report       vulnerable_versions: '>=15.4.0-canary.0 <15.4.8',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1111377,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-w37m-7fhw-fmv9',
+160 silly audit report       title: 'Next Server Actions Source Code Exposure ',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=15.4.0-canary.0 <15.4.9',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1111386,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-mwv6-3258-q52c',
+160 silly audit report       title: 'Next Vulnerable to Denial of Service with Server Components',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.4.0-canary.0 <15.4.9',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1107228,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-g5qg-72qw-gw5v',
+160 silly audit report       title: 'Next.js Affected by Cache Key Confusion for Image Optimization API Routes',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=15.0.0 <=15.4.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1107514,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-xv57-4mr9-wg8v',
+160 silly audit report       title: 'Next.js Content Injection Vulnerability for Image Optimization',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=15.0.0 <=15.4.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1107515,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-4342-x723-ch2f',
+160 silly audit report       title: 'Next.js Improper Middleware Redirect Handling Leads to SSRF',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=15.0.0-canary.0 <15.4.7',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118939,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-26hh-7cqf-hhc6',
+160 silly audit report       title: 'Next.js has a Middleware / Proxy bypass in App Router applications via segment-prefetch routes - Incomplete Fix Follow-Up',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.2.0 <15.5.18',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118942,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3g8h-86w9-wvmq',
+160 silly audit report       title: "Next.js's Middleware / Proxy redirects can be cache-poisoned",
+160 silly audit report       severity: 'low',
+160 silly audit report       vulnerable_versions: '>=12.2.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118944,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-ffhc-5mcf-pf4q',
+160 silly audit report       title: 'Next.js vulnerable to cross-site scripting in App Router applications using CSP nonces',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=13.4.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118946,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-vfv6-92ff-j949',
+160 silly audit report       title: 'Next.js vulnerable to cache poisoning via collisions in React Server Component cache-busting',
+160 silly audit report       severity: 'low',
+160 silly audit report       vulnerable_versions: '>=13.4.6 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118948,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-gx5p-jg67-6x7h',
+160 silly audit report       title: 'Next.js has cross-site scripting in beforeInteractive scripts with untrusted input',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118950,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-mg66-mrh9-m8jx',
+160 silly audit report       title: 'Next.js vulnerable to Denial of Service via connection exhaustion in applications using Cache Components',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.0.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118952,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-h64f-5h5j-jqjh',
+160 silly audit report       title: 'Next.js has a Denial of Service in the Image Optimization API',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118954,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-c4j6-fc7j-m34r',
+160 silly audit report       title: 'Next.js vulnerable to server-side request forgery in applications using WebSocket upgrades',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=13.4.13 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118956,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-492v-c6pp-mqqv',
+160 silly audit report       title: 'Next.js has a Middleware / Proxy bypass through dynamic route parameter injection',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.4.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118958,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-wfc6-r584-vfw7',
+160 silly audit report       title: 'Next.js vulnerable to cache poisoning in React Server Component responses',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=14.2.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118960,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-267c-6grr-h53f',
+160 silly audit report       title: 'Next.js has a Middleware / Proxy bypass in App Router applications via segment-prefetch routes',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.2.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1118962,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-36qx-fr4f-26g5',
+160 silly audit report       title: 'Next.js has a Middleware / Proxy bypass in Pages Router applications using i18n',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=12.2.0 <15.5.16',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112593,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-9g9p-9gw9-jx7f',
+160 silly audit report       title: 'Next.js self-hosted applications vulnerable to DoS via Image Optimizer remotePatterns configuration',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.10',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112649,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-h25m-26qc-wcjf',
+160 silly audit report       title: 'Next.js HTTP request deserialization can lead to DoS when using insecure React Server Components',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=15.4.0-canary.0 <15.4.11',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1114897,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-ggv3-7p47-pfv8',
+160 silly audit report       title: 'Next.js: HTTP request smuggling in rewrites',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=9.5.0 <15.5.13',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1114940,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3x4c-7xq6-9pq8',
+160 silly audit report       title: 'Next.js: Unbounded next/image disk cache growth can exhaust storage',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=10.0.0 <15.5.14',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1116376,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-q4gf-8mx6-v5v3',
+160 silly audit report       title: 'Next.js has a Denial of Service with Server Components',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=13.0.0 <15.5.15',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   postcss: [
+160 silly audit report     {
+160 silly audit report       id: 1117015,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-qx2v-qp2m-jg93',
+160 silly audit report       title: 'PostCSS has XSS via Unescaped </style> in its CSS Stringify Output',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<8.5.10',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   picomatch: [
+160 silly audit report     {
+160 silly audit report       id: 1115549,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3v7f-55p6-f55p',
+160 silly audit report       title: 'Picomatch: Method Injection in POSIX Character Classes causes incorrect Glob Matching',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '<2.3.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115551,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3v7f-55p6-f55p',
+160 silly audit report       title: 'Picomatch: Method Injection in POSIX Character Classes causes incorrect Glob Matching',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=4.0.0 <4.0.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115552,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-c2c7-rcm5-vvqj',
+160 silly audit report       title: 'Picomatch has a ReDoS vulnerability via extglob quantifiers',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<2.3.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1115554,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-c2c7-rcm5-vvqj',
+160 silly audit report       title: 'Picomatch has a ReDoS vulnerability via extglob quantifiers',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=4.0.0 <4.0.4',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   'react-router': [
+160 silly audit report     {
+160 silly audit report       id: 1112053,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-2w69-qvjg-hvjx',
+160 silly audit report       title: 'React Router vulnerable to XSS via Open Redirects',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <=7.11.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112055,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-8v8x-cx79-35w7',
+160 silly audit report       title: 'React Router SSR XSS in ScrollRestoration',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <7.12.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112056,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-9jcx-v3wj-wh4m',
+160 silly audit report       title: 'React Router has unexpected external redirect via untrusted paths',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <7.9.6',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1112062,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-3cgp-3xvw-98x8',
+160 silly audit report       title: 'React Router has XSS Vulnerability',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <=7.8.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120063,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-49rj-9fvp-4h2h',
+160 silly audit report       title: "React Router's vendored turbo-stream v2 allows arbitrary constructor invocation via TYPE_ERROR deserialization leading to Unauth RCE",
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <=7.14.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120065,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-2j2x-hqr9-3h42',
+160 silly audit report       title: "React Router's same-origin redirect with path starting // causes open redirect via protocol-relative URL reinterpretation",
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <7.14.1',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120066,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-8646-j5j9-6r62',
+160 silly audit report       title: 'React Router vulnerable to XSS in unstable RSC redirect handling via javascript: redirect targets',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.7.0 <7.13.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120067,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-f22v-gfqf-p8f3',
+160 silly audit report       title: 'React Router has stored XSS via unescaped Location header in prerendered redirect HTML',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=7.5.1 <7.13.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120069,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-8x6r-g9mw-2r78',
+160 silly audit report       title: 'React Router vulnerable to DoS via unbounded path expansion in __manifest endpoint',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <7.15.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120081,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-rxv8-25v2-qmq8',
+160 silly audit report       title: 'React Router vulnerable to Denial of Service via reflected user input in single-fetch',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <7.14.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1120382,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-h5cw-625j-3rxh',
+160 silly audit report       title: 'React Router has CSRF issue in Action/Server Action Request Processing',
+160 silly audit report       severity: 'moderate',
+160 silly audit report       vulnerable_versions: '>=7.0.0 <=7.11.0',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ],
+160 silly audit report   tar: [
+160 silly audit report     {
+160 silly audit report       id: 1112659,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-34x7-hfp2-rc4v',
+160 silly audit report       title: 'node-tar Vulnerable to Arbitrary File Creation/Overwrite via Hardlink Path Traversal',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<7.5.7',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113300,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-8qq5-rm4j-mr97',
+160 silly audit report       title: 'node-tar is Vulnerable to Arbitrary File Overwrite and Symlink Poisoning via Insufficient Path Sanitization',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<=7.5.2',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1113375,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-83g3-92jg-28cx',
+160 silly audit report       title: 'Arbitrary File Read/Write via Hardlink Target Escape Through Symlink Chain in node-tar Extraction',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<7.5.8',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1114200,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-qffp-2rhf-9h96',
+160 silly audit report       title: 'tar has Hardlink Path Traversal via Drive-Relative Linkpath',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<=7.5.9',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1114302,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-9ppj-qmqm-q256',
+160 silly audit report       title: 'node-tar Symlink Path Traversal via Drive-Relative Linkpath',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<=7.5.10',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     },
+160 silly audit report     {
+160 silly audit report       id: 1114680,
+160 silly audit report       url: 'https://github.com/advisories/GHSA-r6q2-hw4h-h46w',
+160 silly audit report       title: 'Race Condition in node-tar Path Reservations via Unicode Ligature Collisions on macOS APFS',
+160 silly audit report       severity: 'high',
+160 silly audit report       vulnerable_versions: '<=7.5.3',
+160 silly audit report       cwe: [Array],
+160 silly audit report       cvss: [Object]
+160 silly audit report     }
+160 silly audit report   ]
+160 silly audit report }
+161 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2fplugin-kit cache-miss
+162 silly packumentCache corgi:https://registry.npmjs.org/brace-expansion cache-miss
+163 silly packumentCache corgi:https://registry.npmjs.org/minimatch cache-miss
+164 silly packumentCache corgi:https://registry.npmjs.org/ajv cache-miss
+165 silly packumentCache corgi:https://registry.npmjs.org/axios cache-miss
+166 silly packumentCache corgi:https://registry.npmjs.org/flatted cache-miss
+167 silly packumentCache corgi:https://registry.npmjs.org/follow-redirects cache-miss
+168 silly packumentCache corgi:https://registry.npmjs.org/js-yaml cache-miss
+169 silly packumentCache corgi:https://registry.npmjs.org/lodash cache-miss
+170 silly packumentCache corgi:https://registry.npmjs.org/next cache-miss
+171 silly packumentCache corgi:https://registry.npmjs.org/postcss cache-miss
+172 silly packumentCache corgi:https://registry.npmjs.org/picomatch cache-miss
+173 silly packumentCache corgi:https://registry.npmjs.org/react-router cache-miss
+174 silly packumentCache corgi:https://registry.npmjs.org/tar cache-miss
+175 http cache https://registry.npmjs.org/ajv 162ms (cache hit)
+176 silly packumentCache corgi:https://registry.npmjs.org/ajv set size:467559 disposed:false
+177 http cache https://registry.npmjs.org/flatted 167ms (cache hit)
+178 silly packumentCache corgi:https://registry.npmjs.org/flatted set size:57858 disposed:false
+179 http cache https://registry.npmjs.org/lodash 165ms (cache hit)
+180 silly packumentCache corgi:https://registry.npmjs.org/lodash set size:69555 disposed:false
+181 http cache https://registry.npmjs.org/minimatch 181ms (cache hit)
+182 silly packumentCache corgi:https://registry.npmjs.org/minimatch set size:168441 disposed:false
+183 http cache https://registry.npmjs.org/@eslint%2fplugin-kit 190ms (cache hit)
+184 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2fplugin-kit set size:21704 disposed:false
+185 http cache https://registry.npmjs.org/brace-expansion 190ms (cache hit)
+186 silly packumentCache corgi:https://registry.npmjs.org/brace-expansion set size:24623 disposed:false
+187 http cache https://registry.npmjs.org/js-yaml 181ms (cache hit)
+188 silly packumentCache corgi:https://registry.npmjs.org/js-yaml set size:59520 disposed:false
+189 http cache https://registry.npmjs.org/follow-redirects 186ms (cache hit)
+190 silly packumentCache corgi:https://registry.npmjs.org/follow-redirects set size:88479 disposed:false
+191 http cache https://registry.npmjs.org/picomatch 180ms (cache hit)
+192 silly packumentCache corgi:https://registry.npmjs.org/picomatch set size:44414 disposed:false
+193 http cache https://registry.npmjs.org/axios 199ms (cache hit)
+194 silly packumentCache corgi:https://registry.npmjs.org/axios set size:292409 disposed:false
+195 http cache https://registry.npmjs.org/react-router 221ms (cache hit)
+196 silly packumentCache corgi:https://registry.npmjs.org/react-router set size:1333656 disposed:false
+197 http cache https://registry.npmjs.org/postcss 354ms (cache hit)
+198 silly packumentCache corgi:https://registry.npmjs.org/postcss set size:344717 disposed:false
+199 http cache https://registry.npmjs.org/tar 360ms (cache hit)
+200 silly packumentCache corgi:https://registry.npmjs.org/tar set size:202125 disposed:false
+201 http cache https://registry.npmjs.org/next 478ms (cache hit)
+202 silly packumentCache corgi:https://registry.npmjs.org/next set size:25265918 disposed:false
+203 silly packumentCache corgi:https://registry.npmjs.org/eslint cache-miss
+204 http cache https://registry.npmjs.org/eslint 12ms (cache hit)
+205 silly packumentCache corgi:https://registry.npmjs.org/eslint set size:1163235 disposed:false
+206 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2fconfig-array cache-miss
+207 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2feslintrc cache-miss
+208 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-import cache-miss
+209 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-jsx-a11y cache-miss
+210 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-react cache-miss
+211 http cache https://registry.npmjs.org/eslint-plugin-react 26ms (cache hit)
+212 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-react set size:309843 disposed:false
+213 http cache https://registry.npmjs.org/@eslint%2fconfig-array 38ms (cache hit)
+214 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2fconfig-array set size:19036 disposed:false
+215 http cache https://registry.npmjs.org/@eslint%2feslintrc 38ms (cache hit)
+216 silly packumentCache corgi:https://registry.npmjs.org/@eslint%2feslintrc set size:83205 disposed:false
+217 http cache https://registry.npmjs.org/eslint-plugin-import 42ms (cache hit)
+218 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-import set size:238396 disposed:false
+219 http cache https://registry.npmjs.org/eslint-plugin-jsx-a11y 46ms (cache hit)
+220 silly packumentCache corgi:https://registry.npmjs.org/eslint-plugin-jsx-a11y set size:108835 disposed:false
+221 silly packumentCache corgi:https://registry.npmjs.org/@typescript-eslint%2ftypescript-estree cache-miss
+222 http cache https://registry.npmjs.org/@typescript-eslint%2ftypescript-estree 46ms (cache hit)
+223 silly packumentCache corgi:https://registry.npmjs.org/@typescript-eslint%2ftypescript-estree set size:8714027 disposed:false
+224 silly packumentCache corgi:https://registry.npmjs.org/flat-cache cache-miss
+225 http cache https://registry.npmjs.org/flat-cache 4ms (cache hit)
+226 silly packumentCache corgi:https://registry.npmjs.org/flat-cache set size:50282 disposed:false
+227 silly packumentCache corgi:https://registry.npmjs.org/recharts cache-miss
+228 http cache https://registry.npmjs.org/recharts 7ms (cache hit)
+229 silly packumentCache corgi:https://registry.npmjs.org/recharts set size:837908 disposed:false
+230 silly packumentCache corgi:https://registry.npmjs.org/@splinetool%2freact-spline cache-miss
+231 http cache https://registry.npmjs.org/@splinetool%2freact-spline 11ms (cache hit)
+232 silly packumentCache corgi:https://registry.npmjs.org/@splinetool%2freact-spline set size:46184 disposed:false
+233 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2fpostcss cache-miss
+234 http cache https://registry.npmjs.org/@tailwindcss%2fpostcss 75ms (cache hit)
+235 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2fpostcss set size:949410 disposed:false
+236 silly packumentCache corgi:https://registry.npmjs.org/micromatch cache-miss
+237 http cache https://registry.npmjs.org/micromatch 4ms (cache hit)
+238 silly packumentCache corgi:https://registry.npmjs.org/micromatch set size:71776 disposed:false
+239 silly packumentCache corgi:https://registry.npmjs.org/tinyglobby cache-miss
+240 silly packumentCache corgi:https://registry.npmjs.org/fdir cache-miss
+241 http cache https://registry.npmjs.org/tinyglobby 5ms (cache hit)
+242 silly packumentCache corgi:https://registry.npmjs.org/tinyglobby set size:19921 disposed:false
+243 http cache https://registry.npmjs.org/fdir 6ms (cache hit)
+244 silly packumentCache corgi:https://registry.npmjs.org/fdir set size:76905 disposed:false
+245 silly packumentCache corgi:https://registry.npmjs.org/react-router-dom cache-miss
+246 http cache https://registry.npmjs.org/react-router-dom 11ms (cache hit)
+247 silly packumentCache corgi:https://registry.npmjs.org/react-router-dom set size:1058676 disposed:false
+248 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2foxide cache-miss
+249 http cache https://registry.npmjs.org/@tailwindcss%2foxide 12ms (cache hit)
+250 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2foxide set size:2248129 disposed:false
+251 silly ADD
+252 silly ADD
+253 silly ADD
+254 silly ADD
+255 silly ADD
+256 silly ADD
+257 silly ADD
+258 silly ADD
+259 silly ADD
+260 silly ADD
+261 silly ADD
+262 silly ADD
+263 silly ADD
+264 silly ADD
+265 silly ADD
+266 silly ADD
+267 silly ADD
+268 silly ADD
+269 silly ADD
+270 silly ADD
+271 silly ADD
+272 silly ADD
+273 silly ADD
+274 silly ADD
+275 silly ADD
+276 silly ADD
+277 silly ADD
+278 silly ADD
+279 silly ADD
+280 silly ADD
+281 silly ADD
+282 silly ADD
+283 silly ADD
+284 silly ADD
+285 silly ADD
+286 silly ADD
+287 silly ADD
+288 silly ADD
+289 silly ADD
+290 silly ADD
+291 silly ADD
+292 silly ADD
+293 silly ADD
+294 silly ADD
+295 silly ADD
+296 silly ADD
+297 silly ADD
+298 silly ADD
+299 silly ADD
+300 silly ADD
+301 silly ADD
+302 silly ADD
+303 silly ADD
+304 silly ADD
+305 silly ADD
+306 silly ADD
+307 silly ADD
+308 silly ADD
+309 silly ADD
+310 silly ADD
+311 silly ADD
+312 silly ADD
+313 silly ADD
+314 silly ADD
+315 silly ADD
+316 silly ADD
+317 verbose cwd D:\project\callify\call_me-main\call\frontend
+318 verbose os Windows_NT 10.0.26200
+319 verbose node v22.16.0
+320 verbose npm  v10.9.2
+321 verbose exit 0
+322 info ok
