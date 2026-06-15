@@ -39,11 +39,20 @@ async function run() {
             first_message: agent.first_message || "Hello! How can I help you today?",
             language: agent.language || "en",
           },
-          asr: { user_input_audio_format: "ulaw_8000" },
-          tts: { agent_output_audio_format: "ulaw_8000" },
+          asr: {
+            quality: "high",
+            user_input_audio_format: "ulaw_8000",
+          },
+          tts: {
+            agent_output_audio_format: "ulaw_8000",
+            optimize_streaming_latency: 3,
+          },
+          turn: {
+            turn_timeout: agent.turn_timeout ?? 1.2,
+          },
         },
       });
-      console.log(`  ✅ Synced`);
+      console.log(`  ✅ Synced (prompt + audio formats + turn settings)`);
     } catch (err) {
       console.error(`  ❌ Failed: ${err.message}`);
     }
