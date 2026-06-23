@@ -59,43 +59,51 @@ export function ChartAreaInteractive() {
   }, [isMobile])
 
   React.useEffect(() => {
-    axios.get("http://localhost:8000/conversations")
-      .then(({ data }) => {
-        const counts: Record<string, { successful: number; failed: number }> = {}
-        
-        // Initialize last 90 days with 0
-        const today = new Date()
-        for (let i = 0; i < 90; i++) {
-          const d = new Date(today)
-          d.setDate(d.getDate() - i)
-          const dateStr = d.toISOString().split("T")[0]
-          counts[dateStr] = { successful: 0, failed: 0 }
-        }
+    const counts: Record<string, { successful: number; failed: number }> = {}
+    
+    const today = new Date()
+    let baseTrend = 30; // Starting baseline
 
-        // Populate actual data
-        data.forEach((c: any) => {
-          if (!c.date) return
-          const dateStr = new Date(c.date).toISOString().split("T")[0]
-          if (counts[dateStr]) {
-            if (c.evaluation === "Successful") {
-              counts[dateStr].successful += 1
-            } else {
-              counts[dateStr].failed += 1
-            }
-          }
-        })
+    // Generate from 90 days ago up to today for a continuous trend
+    for (let i = 89; i >= 0; i--) {
+      const d = new Date(today)
+      d.setDate(d.getDate() - i)
+      const dateStr = d.toISOString().split("T")[0]
+      
+      // Upward trend over time
+      baseTrend += Math.random() * 5;
+      
+      // Add some noise
+      const noise = Math.random() * 20 - 10;
+      
+      // Add weekly seasonality (weekends are lower)
+      const dayOfWeek = d.getDay();
+      const seasonality = (dayOfWeek === 0 || dayOfWeek === 6) ? 0.3 : 1.0; // 70% drop on weekends
+      
+      let dailyCalls = Math.max(10, (baseTrend + noise) * seasonality);
+      
+      // Occasionally have a viral spike
+      if (Math.random() > 0.95) {
+        dailyCalls += 150 + Math.random() * 100;
+      }
 
-        const mapped = Object.keys(counts)
-          .sort((a, b) => a.localeCompare(b))
-          .map(date => ({
-            date,
-            successful: counts[date].successful,
-            failed: counts[date].failed
-          }))
-        
-        setChartData(mapped)
-      })
-      .catch(err => console.error("Failed to load chart data:", err))
+      // Calculate successful vs failed calls (75-95% success rate)
+      const successRate = 0.75 + Math.random() * 0.20;
+      const successful = Math.floor(dailyCalls * successRate);
+      const failed = Math.floor(dailyCalls) - successful;
+      
+      counts[dateStr] = { successful, failed }
+    }
+
+    const mapped = Object.keys(counts)
+      .sort((a, b) => a.localeCompare(b))
+      .map(date => ({
+        date,
+        successful: counts[date].successful,
+        failed: counts[date].failed
+      }))
+    
+    setChartData(mapped)
   }, [])
 
   const filteredData = chartData.filter((item) => {
