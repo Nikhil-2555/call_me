@@ -31,7 +31,7 @@ export function SectionCards() {
         let totalSeconds = 0;
         let totalCredits = 0;
 
-        data.forEach((c: any) => {
+        data.forEach((c: { duration?: string; creditsCall?: number }) => {
           if (c.duration) {
             const parts = String(c.duration).split(":");
             if (parts.length === 2) {

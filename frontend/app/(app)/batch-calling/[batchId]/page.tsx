@@ -8,8 +8,6 @@ import {
   Phone,
   Calendar,
   Clock,
-  CheckCircle,
-  XCircle,
   RefreshCw,
   StopCircle,
 } from "lucide-react";
@@ -30,7 +28,7 @@ type Recipient = {
   created_at_unix: number;
   updated_at_unix: number;
   conversation_id: string;
-  conversation_initiation_client_data?: any;
+  conversation_initiation_client_data?: Record<string, unknown>;
 };
 
 type Status = "pending" | "in_progress" | "completed" | "failed" | "cancelled";
@@ -43,11 +41,6 @@ type BatchStatus = {
   total_calls_scheduled: number;
   last_updated_at_unix: number;
   created_at_unix: number;
-};
-
-type BatchRecipients = {
-  batch_id: string;
-  recipients: Recipient[];
 };
 
 /* ──────────────────────────────
@@ -133,8 +126,8 @@ const [loading, setLoading] = React.useState(true);
       if (!res.ok) throw new Error(await res.text());
       fetchStatus();
       fetchRecipients();
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      alert(err instanceof Error ? err.message : String(err));
     } finally {
       setActionLoading(false);
     }

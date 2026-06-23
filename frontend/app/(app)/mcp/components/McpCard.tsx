@@ -41,7 +41,7 @@ export function McpCard({
         </p>
       </div>
       <div className="flex gap-2">
-        <EditPolicyDialog server={server} onMutate={onMutate} />
+        <EditPolicyDialog serverId={server.id} initialPolicy={server.approval_policy} onMutate={onMutate} />
         <Button variant="ghost" size="icon" onClick={handleDelete} className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950">
           <Trash2 className="w-4 h-4" />
         </Button>

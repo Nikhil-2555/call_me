@@ -195,8 +195,8 @@ export default function BatchCallingPage() {
       setOpen(false);
       form.reset();
       refetch();
-    } catch (e: any) {
-      alert(e.message);
+    } catch (e: unknown) {
+      alert(e instanceof Error ? e.message : String(e));
     }
   };
 

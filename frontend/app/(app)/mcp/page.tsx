@@ -29,7 +29,7 @@ export default function McpIndexPage() {
       if (!res.ok) throw new Error("Network");
       const data = await res.json();
       setServers(data.mcp_servers_summary);
-    } catch (e) {
+    } catch {
       console.log({ title: "Error loading servers", variant: "destructive" });
     } finally {
       setLoading(false);

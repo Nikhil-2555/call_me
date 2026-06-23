@@ -24,21 +24,23 @@ const policies = [
 ] as const;
 
 export function EditPolicyDialog({
-  server,
+  serverId,
+  initialPolicy,
   onMutate,
 }: {
-  server: any;
-  onMutate: (updated: any) => void;
+  serverId: string;
+  initialPolicy: string;
+  onMutate: (updated: unknown) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const [policy, setPolicy] = useState<string>(server?.config?.approval_policy);
+  const [policy, setPolicy] = useState<string>(initialPolicy);
   const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:8000/mcp/servers/${server.id}/approval-policy`,
+        `http://localhost:8000/mcp/servers/${serverId}/approval-policy`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -50,8 +52,8 @@ export function EditPolicyDialog({
       onMutate(updated);
       console.log({ title: "Policy updated" });
       setOpen(false);
-    } catch (e: any) {
-      console.log({ title: "Update error", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      console.log({ title: "Update error", description: e instanceof Error ? e.message : String(e), variant: "destructive" });
     } finally {
       setLoading(false);
     }

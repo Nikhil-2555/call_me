@@ -13,7 +13,6 @@ import {
   useSensor,
   useSensors,
   type DragEndEvent,
-  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { formatDistanceToNow } from "date-fns";
@@ -34,10 +33,8 @@ import {
   IconChevronsLeft,
   IconChevronsRight,
   IconCircleCheckFilled,
-  IconGripVertical,
   IconLayoutColumns,
   IconLoader,
-  IconPlus,
 } from "@tabler/icons-react";
 import {
   ColumnDef,
@@ -232,7 +229,24 @@ export function DataTable() {
     axios
       .get("http://localhost:8000/conversations", { params: { page_size: 100 } })
       .then(({ data: res }) => {
-        const mapped = (Array.isArray(res) ? res : []).map((c: any) =>
+        const mapped = (Array.isArray(res) ? res : []).map((c: {
+          id?: string;
+          date?: string | number;
+          agent?: string;
+          duration?: string;
+          messages?: number;
+          evaluation?: "Successful" | "Failed" | "In Progress";
+          transcript?: string;
+          recordingUrl?: string;
+          client?: { name?: string; phone?: string };
+          tags?: string[];
+          creditsCall?: number;
+          creditsLLM?: number;
+          costPerMin?: number;
+          totalUSD?: number;
+          turns?: unknown[];
+          clientOverrides?: { language?: string };
+        }) =>
           schema.parse({
             id: c.id,
             date: new Date(c.date || Date.now()).toISOString(),
@@ -497,7 +511,7 @@ function TableCellViewer({
 
     /* 1. conversation details */
     axios.get(`http://localhost:8000/conversations/${item.id}`).then(({ data }) => {
-      const turns = (data.transcript ?? []).map((t: any) => ({
+      const turns = (data.transcript ?? []).map((t: { role?: string; message?: string; time_in_call_secs?: number }) => ({
         speaker: t.role as "user" | "agent",
         text: t.message ?? "",
         time: fmt(t.time_in_call_secs ?? 0),

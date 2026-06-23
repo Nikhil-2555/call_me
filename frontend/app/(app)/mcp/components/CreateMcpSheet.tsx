@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils"; // shadcn helper
 
 export function CreateMcpSheet({
   open,
@@ -31,7 +30,7 @@ export function CreateMcpSheet({
   /* --- form state --- */
   const [url, setUrl] = useState("");
   const [name, setName] = useState("");
-  const [approvalPolicy, setApprovalPolicy] = useState("require_approval_all");
+  const [approvalPolicy] = useState("require_approval_all");
   const [transport, setTransport] = useState("SSE");
   const [description, setDescription] = useState("");
   const [secretId, setSecretId] = useState("");
@@ -92,7 +91,7 @@ export function CreateMcpSheet({
       }
     }
 
-    let parsedTools: any[] = [];
+    let parsedTools: unknown[] = [];
     if (toolHashes.trim()) {
       try {
         parsedTools = JSON.parse(toolHashes);
@@ -131,8 +130,8 @@ export function CreateMcpSheet({
       console.log({ title: "MCP server created" });
       onOpenChange(false);
       onCreated();
-    } catch (e: any) {
-      console.log({ title: "Create error", description: e.message, variant: "destructive" });
+    } catch (e: unknown) {
+      console.log({ title: "Create error", description: e instanceof Error ? e.message : String(e), variant: "destructive" });
     } finally {
       setLoading(false);
     }

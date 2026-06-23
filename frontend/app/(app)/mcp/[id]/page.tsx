@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
@@ -25,7 +25,8 @@ export type McpServer = {
   dependent_agents: string[];
 };
 
-export default function McpDetailPage({ params }: { params: { id: string } }) {
+export default function McpDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [server, setServer] = useState<McpServer | null>(null);
   const [tools, setTools] = useState<Array<{ name: string; description: string }>>([]);
   const [loading, setLoading] = useState(true);
@@ -34,8 +35,8 @@ export default function McpDetailPage({ params }: { params: { id: string } }) {
     const fetchServer = async () => {
       try {
         const [resS, resT] = await Promise.all([
-          fetch(`http://localhost:8000/mcp/servers/${params.id}`),
-          fetch(`http://localhost:8000/mcp/servers/${params.id}/tools`).catch(() => null),
+          fetch(`http://localhost:8000/mcp/servers/${id}`),
+          fetch(`http://localhost:8000/mcp/servers/${id}/tools`).catch(() => null),
         ]);
         if (!resS.ok) throw new Error("Server not found");
         setServer(await resS.json());
@@ -43,7 +44,7 @@ export default function McpDetailPage({ params }: { params: { id: string } }) {
           const t = await resT.json();
           setTools(t.tools || []);
         }
-      } catch (e) {
+      } catch {
         console.log({ title: "Error loading server", variant: "destructive" });
         notFound();
       } finally {
@@ -51,7 +52,7 @@ export default function McpDetailPage({ params }: { params: { id: string } }) {
       }
     };
     fetchServer();
-  }, [params.id]);
+  }, [id]);
 
   if (loading) return <p className="p-6">Loading…</p>;
   if (!server) return notFound();
@@ -83,7 +84,7 @@ export default function McpDetailPage({ params }: { params: { id: string } }) {
       <section className="flex gap-2">
         <TestConnectionButton serverId={server.id} />
         {server.access_info.is_creator && (
-          <EditPolicyDialog server={server} onMutate={(s) => setServer(s)} />
+          <EditPolicyDialog serverId={server.id} initialPolicy={server.config.approval_policy} onMutate={(s) => setServer(s as McpServer)} />
         )}
       </section>
 
